@@ -1,0 +1,2770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <style>
+        /* Reset and Base Styles */
+         /* Techy Font System */
+        :root {
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            --font-weight-light: 300;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-primary);
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: var(--font-weight-regular);
+        }
+
+        /* Typography Scale */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: var(--font-weight-bold);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: var(--font-weight-extrabold);
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: var(--font-weight-bold);
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: var(--font-weight-semibold);
+            color: #000000;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-weight: var(--font-weight-regular);
+        }
+
+        .tech-accent {
+            font-family: var(--font-mono);
+            font-weight: var(--font-weight-medium);
+            color: #818cf8;
+            font-size: 0.9em;
+            letter-spacing: 0.05em;
+        }
+
+        .code-style {
+            font-family: var(--font-mono);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            font-size: 0.9em;
+        }
+
+        /* Navigation */
+        nav {
+            font-weight: var(--font-weight-medium);
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: var(--font-weight-medium);
+            letter-spacing: -0.01em;
+        }
+
+        /* Hero Section */
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: var(--font-weight-extrabold);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: var(--font-weight-light);
+            color: #94a3b8;
+        }
+
+        /* Feature Cards */
+        .feature-card h3 {
+            font-family: var(--font-primary);
+            font-weight: var(--font-weight-semibold);
+            font-size: 1.25rem;
+            color: #f8fafc;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            font-weight: var(--font-weight-regular);
+            color: #94a3b8;
+        }
+
+        /* Pricing Section */
+        .pricing-card h3 {
+            font-weight: var(--font-weight-bold);
+            color: #f8fafc;
+        }
+
+        .price {
+            font-family: var(--font-mono);
+            font-weight: var(--font-weight-bold);
+            font-size: 2.5rem;
+            color: #818cf8;
+        }
+
+        /* Buttons */
+        .cta-button {
+            font-weight: var(--font-weight-semibold);
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* Footer */
+        footer {
+            font-weight: var(--font-weight-regular);
+        }
+
+        .footer-column h3 {
+            font-weight: var(--font-weight-semibold);
+            font-size: 1.1rem;
+        }
+
+        .footer-column a {
+            font-size: 0.9rem;
+            font-weight: var(--font-weight-regular);
+        }
+
+        /* Utility Classes */
+        .font-mono {
+            font-family: var(--font-mono);
+        }
+
+        .font-light {
+            font-weight: var(--font-weight-light);
+        }
+
+        .font-regular {
+            font-weight: var(--font-weight-regular);
+        }
+
+        .font-medium {
+            font-weight: var(--font-weight-medium);
+        }
+
+        .font-semibold {
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .font-bold {
+            font-weight: var(--font-weight-bold);
+        }
+
+        .font-extrabold {
+            font-weight: var(--font-weight-extrabold);
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            
+            h2 {
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .hero p {
+                font-size: 1.125rem;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3b82f6;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 2px solid #3b82f6;
+            transition: all 0.3s;
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 700px;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Features Section */
+        .section {
+            padding: 100px 40px;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #3b82f6;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* How It Works Section */
+        .steps-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s;
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #666;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: #f0f7ff;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+        }
+
+        .author-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #3b82f6;
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: #3b82f6;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #3b82f6;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: #777;
+            font-weight: normal;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            color: #555;
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-answer {
+            background-color: #f8fafc;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 300px;
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: #3b82f6;
+            color: white;
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .cta-section .cta-button {
+            background-color: white;
+            color: #3b82f6;
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+
+        .cta-section .cta-button:hover {
+            background-color: #f0f4ff;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #94a3b8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #94a3b8;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero-image {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .hero {
+                padding: 0 20px;
+                text-align: center;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                margin: 0 auto 30px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 100%;
+                max-width: 500px;
+                top: auto;
+                right: auto;
+                transform: none;
+                margin-top: 30px;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">AI-<br><span>Assistant</span></a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="#cta" class="cta-button">Get Started</a>
+    </nav>
+
+    <!-- Hero Section -->
+   <section class="hero">
+    <div class="hero-content">
+        <h1>Learn Everything the Easy-Way</h1>
+        <p>Our advanced AI assistant helps you accomplish more in less time.</p>
+        <div class="hero-buttons">
+            <a href="#cta" class="cta-button">Try for Free</a>
+            <a href="#how-it-works" class="secondary-button">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://media.istockphoto.com/id/1830040543/photo/ai-processor-technology-or-artificial-intelligence-man-using-smart-cloud-a-i-by-entering.jpg?s=612x612&w=0&k=20&c=7FljUADys5MoASxojbuDzxPa9Yv7IcIithA93qGpHjc=');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 2;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.cta-button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.secondary-button {
+    background-color: transparent;
+    color: #3b82f6;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid #3b82f6;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.secondary-button:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .hero {
+        padding: 0 20px;
+        text-align: center;
+        background-position: center;
+    }
+    
+    .hero::before {
+        background: rgba(255,255,255,0.8);
+    }
+    
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .hero p {
+        margin: 0 auto 30px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+
+    <!-- Features Section -->
+<section class="section" id="features">
+    <div class="section-title">
+        <h2>Cutting-Edge Cognitive Capabilities</h2>
+        <p>Leverage our sophisticated artificial intelligence ecosystem to revolutionize your operational paradigms and amplify productivity metrics</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+            <h3>Contextual Discourse Optimization</h3>
+            <p>Engage in sophisticated conversational interfaces with our neural network architecture that demonstrates exceptional contextual awareness and maintains persistent memory across interactions.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Advanced Ideation Framework</h3>
+            <p>Generate paradigm-shifting conceptual frameworks and implement innovative problem-solving methodologies through our sophisticated cognitive computing algorithms.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h3>Automated Content Generation</h3>
+            <p>Produce sophisticated, semantically-rich content across multiple domains with unprecedented efficiency, leveraging our advanced natural language generation capabilities.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-code"></i>
+            </div>
+            <h3>Computational Intelligence Augmentation</h3>
+            <p>Access sophisticated programming assistance, algorithmic optimization, and comprehensive debugging capabilities through our machine learning-powered development ecosystem.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-language"></i>
+            </div>
+            <h3>Multilingual Semantic Processing</h3>
+            <p>Facilitate cross-cultural communication and content localization with our sophisticated neural machine translation and semantic understanding capabilities across diverse linguistic frameworks.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Enterprise-Grade Security Infrastructure</h3>
+            <p>Implement robust data protection protocols with end-to-end encryption, comprehensive access controls, and sophisticated threat mitigation strategies to ensure absolute data integrity.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- How It Works Section -->
+ <section class="section" id="how-it-works">
+    <div class="section-title">
+        <h2>Implementation Methodology</h2>
+        <p>Our sophisticated onboarding framework ensures seamless integration and immediate value realization</p>
+    </div>
+    <div class="steps-container">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Expedited Account Provisioning</h3>
+                <p>Initiate your comprehensive evaluation period through our streamlined authentication protocol, requiring minimal credential input and zero financial commitment for preliminary assessment.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Strategic Solution Architecture Selection</h3>
+                <p>Curate your optimal subscription tier from our multi-faceted service catalog, designed to accommodate diverse operational requirements from individual utilization to enterprise-scale deployment.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Immediate Cognitive Interface Engagement</h3>
+                <p>Commence sophisticated dialogue with our advanced neural network through our intuitive multi-platform ecosystem, enabling instantaneous interaction and knowledge acquisition.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Comprehensive System Integration & Workflow Automation</h3>
+                <p>Implement sophisticated API connectivity and establish automated operational protocols to optimize productivity metrics and maximize return on cognitive technology investment.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+   <!-- Testimonial Section -->
+<!-- Testimonials Section -->
+<section class="section testimonials">
+    <div class="section-title">
+        <h2>Client Success Stories</h2>
+        <p>Discover how industry leaders and professionals are transforming their workflows with our cognitive computing platform</p>
+    </div>
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "Honestly, I was blown away by how natural the conversations feel. It's like having a senior developer who never sleeps. The code suggestions are actually useful, not just generic templates."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Alex Morgan" class="author-avatar">
+                <div class="author-info">
+                    <h4>Alex Morgan</h4>
+                    <p>Lead Software Architect</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "I've tried several AI tools, but this one actually gets my writing style. It doesn't just spit out generic content - it adapts to my voice and helps me brainstorm angles I wouldn't have considered."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Sarah Johnson" class="author-avatar">
+                <div class="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>Content Marketing Director</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "The multilingual support is a game-changer for our global team. We can now create consistent messaging across 8 languages without losing nuance. It's cut our localization time by 70%."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="James Chen" class="author-avatar">
+                <div class="author-info">
+                    <h4>James Chen</h4>
+                    <p>Global Operations Manager</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "As a startup founder, every minute counts. This tool has become my thinking partner - from drafting investor updates to brainstorming product features. It's like having another co-founder."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Maria Rodriguez" class="author-avatar">
+                <div class="author-info">
+                    <h4>Maria Rodriguez</h4>
+                    <p>Tech Startup Founder</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "The research assistance features have revolutionized how I prepare for client meetings. I can quickly synthesize complex information and present it in ways that actually make sense to stakeholders."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Dr. Emily Watson" class="author-avatar">
+                <div class="author-info">
+                    <h4>Dr. Emily Watson</h4>
+                    <p>Management Consultant</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "I was skeptical about AI in education, but this tool helps me create personalized learning materials for my students. It understands different learning styles and adapts content accordingly."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1506919258185-607c738e2034?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Prof. Robert Kim" class="author-avatar">
+                <div class="author-info">
+                    <h4>Prof. Robert Kim</h4>
+                    <p>University Professor</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "The API integration was surprisingly smooth. We've automated our customer support responses and internal documentation. The team loves how it handles repetitive tasks so they can focus on complex issues."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="David Park" class="author-avatar">
+                <div class="author-info">
+                    <h4>David Park</h4>
+                    <p>CTO, SaaS Company</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "What impressed me most was how it handles creative work. I use it for campaign ideation and copywriting, and it consistently delivers fresh perspectives that align with our brand voice."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Lisa Thompson" class="author-avatar">
+                <div class="author-info">
+                    <h4>Lisa Thompson</h4>
+                    <p>Creative Director</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "As a non-technical founder, I appreciate how it explains complex concepts in plain English. It's helped me communicate better with my development team and make more informed decisions."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Amanda Lee" class="author-avatar">
+                <div class="author-info">
+                    <h4>Amanda Lee</h4>
+                    <p>E-commerce Entrepreneur</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "The data analysis capabilities are incredible. It helps me spot trends in our metrics that I would have missed, and explains them in ways that make sense to our entire leadership team."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Michael Brown" class="author-avatar">
+                <div class="author-info">
+                    <h4>Michael Brown</h4>
+                    <p>Data Analytics Lead</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "I use it for everything from writing legal summaries to contract analysis. It's surprisingly accurate with legal terminology and saves me hours of research time each week."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Jennifer Martinez" class="author-avatar">
+                <div class="author-info">
+                    <h4>Jennifer Martinez</h4>
+                    <p>Corporate Attorney</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                "The learning curve was practically non-existent. Our team was producing quality work within hours of onboarding. The ROI was immediate and continues to grow as we discover new use cases."
+            </div>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face" alt="Thomas Wilson" class="author-avatar">
+                <div class="author-info">
+                    <h4>Thomas Wilson</h4>
+                    <p>Operations Director</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-text {
+    font-style: normal;
+    margin-bottom: 25px;
+    color: #555;
+    line-height: 1.7;
+    font-size: 15px;
+    position: relative;
+}
+
+.testimonial-text:before {
+    content: """;
+    font-size: 60px;
+    color: #3b82f6;
+    opacity: 0.2;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-family: Georgia, serif;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 3px solid #f0f7ff;
+}
+
+.author-info h4 {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.author-info p {
+    color: #666;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .testimonial-card {
+        padding: 20px;
+    }
+}
+</style>
+
+
+    <!-- Pricing Section -->
+   <section class="section" id="pricing">
+    <div class="section-title">
+        <h2>Strategic Investment Tiers</h2>
+        <p>Select the optimal cognitive computing solution for your organizational requirements. Flexible termination protocols available.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>Foundational Tier</h3>
+            <div class="price">₨2,499<span>/month</span></div>
+            <div class="usd-price">$9 USD</div>
+            <ul class="pricing-features">
+                <li>100 AI computational interactions daily</li>
+                <li>Fundamental content generation capabilities</li>
+                <li>Standard electronic correspondence support</li>
+                <li>5-session contextual memory retention</li>
+                <li>Baseline response latency parameters</li>
+                <li>Single-user authentication protocol</li>
+                <li>Basic document processing (up to 5MB)</li>
+                <li>Standard encryption protocols</li>
+                <li>Community knowledge base access</li>
+                <li>Monthly usage analytics dashboard</li>
+            </ul>
+            <a href="#cta" class="cta-button">Initiate Deployment</a>
+        </div>
+        <div class="pricing-card popular">
+            <div class="popular-badge">Optimal Selection</div>
+            <h3>Professional Suite</h3>
+            <div class="price">₨8,099<span>/month</span></div>
+            <div class="usd-price">$29 USD</div>
+            <ul class="pricing-features">
+                <li>500 AI computational interactions daily</li>
+                <li>Advanced multi-modal content generation</li>
+                <li>Expedited priority support channel</li>
+                <li>20-session extended memory architecture</li>
+                <li>Enhanced response velocity optimization</li>
+                <li>Comprehensive REST API integration</li>
+                <li>Multi-user access management (up to 5 users)</li>
+                <li>Advanced document processing (up to 50MB)</li>
+                <li>Military-grade encryption standards</li>
+                <li>Custom model fine-tuning capabilities</li>
+                <li>Real-time analytics and reporting</li>
+                <li>Dedicated account management</li>
+                <li>Custom workflow automation scripts</li>
+            </ul>
+            <a href="#cta" class="cta-button">Initiate Deployment</a>
+        </div>
+        <div class="pricing-card">
+            <h3>Enterprise Ecosystem</h3>
+            <div class="price">₨27,599<span>/month</span></div>
+            <div class="usd-price">$99 USD</div>
+            <ul class="pricing-features">
+                <li>Unlimited AI computational interactions</li>
+                <li>Enterprise-grade multi-modal generation</li>
+                <li>24/7 dedicated technical support team</li>
+                <li>Infinite contextual memory architecture</li>
+                <li>Maximum throughput optimization</li>
+                <li>Full API ecosystem with webhooks</li>
+                <li>Unlimited multi-user collaboration</li>
+                <li>Enterprise document processing (unlimited)</li>
+                <li>Quantum-resistant encryption protocols</li>
+                <li>Custom neural network training</li>
+                <li>Advanced predictive analytics suite</li>
+                <li>Dedicated solution architect</li>
+                <li>Custom integration development</li>
+                <li>SLA guarantees (99.9% uptime)</li>
+                <li>On-premise deployment options</li>
+                <li>Compliance certifications (SOC2, GDPR)</li>
+            </ul>
+            <a href="#cta" class="cta-button">Initiate Deployment</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.pricing-card {
+    position: relative;
+}
+
+.usd-price {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.pricing-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.pricing-features li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+</style>
+
+   <!--FAQ Section -->
+<section class="section" id="faq">
+    <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Comprehensive insights into our cognitive computing platform and operational protocols</p>
+    </div>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What distinguishes your cognitive architecture from conventional AI systems?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Our platform leverages a proprietary multi-modal neural network architecture that integrates transformer-based language models with specialized cognitive modules for reasoning, creativity, and contextual understanding.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What evaluation period options are available for prospective users?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>We provide a comprehensive 14-day evaluation period across all subscription tiers, requiring zero financial commitment during the assessment phase.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How does your data governance framework ensure privacy and security compliance?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Our data protection infrastructure implements end-to-end encryption utilizing AES-256 standards for data at rest and TLS 1.3 for data in transit.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What commercial licensing provisions are included in your subscription tiers?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Our Professional and Enterprise tiers include comprehensive commercial usage rights for content generation, code development, and business process automation.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What customization options exist beyond the standard Enterprise offering?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>For organizations requiring specialized capabilities, we offer bespoke solutions including dedicated model fine-tuning using proprietary datasets.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    background: white;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.faq-item:hover {
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.faq-question {
+    background-color: white;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2d3748;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.faq-question:hover {
+    background-color: #f8fafc;
+    color: #3b82f6;
+}
+
+.faq-toggle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #3b82f6;
+    transition: all 0.3s ease;
+    min-width: 20px;
+    text-align: center;
+}
+
+.faq-answer {
+    background-color: #f8fafc;
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 25px 25px 25px;
+    max-height: 500px;
+    opacity: 1;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-item.active .faq-question {
+    background-color: #f0f7ff;
+    border-bottom: 1px solid #e1effe;
+}
+
+.faq-answer p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin: 0;
+    font-size: 15px;
+    padding-top: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .faq-question {
+        padding: 20px;
+        font-size: 15px;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 0 20px 20px 20px;
+    }
+    
+    .faq-answer p {
+        font-size: 14px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+});
+</script>
+   
+    <!-- CTA Section -->
+  <section class="cta-section" id="cta">
+   
+   <div class="cta-content">
+    <h2>Commence Your Cognitive Transformation Journey</h2>
+    <p>Join an exclusive consortium of forward-thinking enterprises and distinguished professionals who are fundamentally redefining operational paradigms through our sophisticated artificial intelligence ecosystem.</p>
+    
+    <div class="cta-stats">
+        <div class="stat">
+            <div class="stat-number">15,427</div>
+            <div class="stat-label">Elite Subscribers</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Satisfaction Rate</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">3.2x</div>
+            <div class="stat-label">Productivity Gain</div>
+        </div>
+    </div>
+    
+    <div class="cta-buttons">
+        <a href="#" class="cta-button primary">
+            <span class="btn-text">Initiate Complimentary Evaluation</span>
+            <span class="btn-arrow">→</span>
+        </a>
+        <a href="#" class="cta-button secondary">
+            <span class="btn-text">Schedule Executive Briefing</span>
+            <span class="btn-icon">🎯</span>
+        </a>
+    </div>
+</div>
+
+<style>
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #fff, #e0f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.cta-content > p {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #60a5fa, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    padding: 1.2rem 2.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button.primary {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #1e3a8a;
+    box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3);
+}
+
+.cta-button.primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
+}
+
+.cta-button.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-arrow, .btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+.cta-button:hover .btn-icon {
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cta-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .cta-content > p {
+        font-size: 1.1rem;
+    }
+    
+    .cta-stats {
+        gap: 2rem;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-button {
+        padding: 1rem 2rem;
+    }
+}
+</style>
+        
+        <div class="trust-indicators">
+            <div class="trust-text">Trusted by Global Industry Pioneers</div>
+            
+            <!-- Animated Logo Banner -->
+            <div class="logo-banner">
+                <div class="logo-track">
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <text x="50" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="currentColor">TECHNOVA</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <circle cx="20" cy="15" r="8" fill="currentColor"/>
+                            <text x="45" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">INNOVATE</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <rect x="10" y="8" width="20" height="14" fill="currentColor" rx="2"/>
+                            <text x="55" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">QUANTUM</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <polygon points="20,8 30,22 10,22" fill="currentColor"/>
+                            <text x="60" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">SYNAPSE</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <text x="50" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="currentColor">NEXUS AI</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <path d="M15,8 L25,8 L25,22 L15,22 Z M30,8 L40,8 L40,22 L30,22 Z" fill="currentColor"/>
+                            <text x="65" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">CYBERNET</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <ellipse cx="20" cy="15" rx="10" ry="7" fill="currentColor"/>
+                            <text x="55" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">FUTURESCAPE</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <text x="50" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="currentColor">COGNITIVE</text>
+                        </svg>
+                    </div>
+                    
+                    <!-- Duplicate for seamless loop -->
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <text x="50" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="currentColor">TECHNOVA</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <circle cx="20" cy="15" r="8" fill="currentColor"/>
+                            <text x="45" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">INNOVATE</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <rect x="10" y="8" width="20" height="14" fill="currentColor" rx="2"/>
+                            <text x="55" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">QUANTUM</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <polygon points="20,8 30,22 10,22" fill="currentColor"/>
+                            <text x="60" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">SYNAPSE</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <text x="50" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="currentColor">NEXUS AI</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <path d="M15,8 L25,8 L25,22 L15,22 Z M30,8 L40,8 L40,22 L30,22 Z" fill="currentColor"/>
+                            <text x="65" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">CYBERNET</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <ellipse cx="20" cy="15" rx="10" ry="7" fill="currentColor"/>
+                            <text x="55" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="12" fill="currentColor">FUTURESCAPE</text>
+                        </svg>
+                    </div>
+                    <div class="logo-item">
+                        <svg viewBox="0 0 100 30" class="logo-svg">
+                            <text x="50" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="currentColor">COGNITIVE</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Previous styles remain the same, adding new logo banner styles */
+
+.trust-indicators {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+.trust-text {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* Logo Banner Styles */
+.logo-banner {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 1.5rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-track {
+    display: flex;
+    animation: logo-scroll 40s linear infinite;
+    gap: 3rem;
+    padding: 0 2rem;
+}
+
+.logo-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    filter: grayscale(0.3);
+}
+
+.logo-item:hover {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.logo-svg {
+    width: 120px;
+    height: 40px;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.logo-item:hover .logo-svg {
+    color: #fbbf24;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
+}
+
+@keyframes logo-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-120px * 8 - 3rem * 8));
+    }
+}
+
+/* Pause animation on hover */
+.logo-banner:hover .logo-track {
+    animation-play-state: paused;
+}
+
+/* Gradient fade edges */
+.logo-banner::before,
+.logo-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+}
+
+.logo-banner::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(30, 58, 138, 1) 0%, rgba(30, 58, 138, 0) 100%);
+}
+
+.logo-banner::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(30, 58, 138, 1) 0%, rgba(30, 58, 138, 0) 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-banner {
+        padding: 1rem 0;
+    }
+    
+    .logo-track {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .logo-svg {
+        width: 100px;
+        height: 35px;
+    }
+    
+    @keyframes logo-scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-100px * 8 - 2rem * 8));
+        }
+    }
+    
+    .logo-banner::before,
+    .logo-banner::after {
+        width: 50px;
+    }
+}
+
+/* Enhanced logo animations */
+@keyframes logo-pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.logo-item:nth-child(odd) {
+    animation: logo-pulse 3s ease-in-out infinite;
+}
+
+.logo-item:nth-child(even) {
+    animation: logo-pulse 3s ease-in-out infinite 1.5s;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Previous particle and counter code remains the same
+    
+    // Create floating particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.width = Math.random() * 10 + 5 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
+    }
+    
+    // Animate statistics
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-count'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            if (target === 3.2) {
+                stat.textContent = current.toFixed(1) + 'x';
+            } else if (target === 98) {
+                stat.textContent = Math.floor(current) + '%';
+            } else {
+                stat.textContent = Math.floor(current).toLocaleString();
+            }
+        }, 16);
+    });
+    
+    // Add logo interaction
+    const logoItems = document.querySelectorAll('.logo-item');
+    logoItems.forEach(logo => {
+        logo.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.15)';
+            this.style.opacity = '1';
+            this.style.filter = 'grayscale(0) drop-shadow(0 0 12px rgba(251, 191, 36, 0.6))';
+        });
+        
+        logo.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.opacity = '0.6';
+            this.style.filter = 'grayscale(0.3)';
+        });
+    });
+});
+</script>
+
+  <!-- Footer Section -->
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <!-- Main Company Info -->
+        <div class="footer-column main-info">
+            <div class="logo-section">
+                <h3 class="footer-logo">COGNITIVE<span>AI</span></h3>
+                <p class="company-description">Pioneering the next generation of artificial intelligence solutions that transcend conventional computational boundaries and redefine enterprise productivity paradigms.</p>
+            </div>
+            <div class="newsletter-section">
+                <h4>Subscribe to Our Intelligence Digest</h4>
+                <p>Receive cutting-edge insights on AI innovation and productivity optimization</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your corporate email" class="newsletter-input">
+                    <button class="newsletter-btn">
+                        <span>Subscribe</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="social-links">
+                <div class="social-title">Connect With Our Ecosystem</div>
+                <div class="social-icons">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span class="tooltip">LinkedIn</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                        <span class="tooltip">Twitter</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                        <span class="tooltip">GitHub</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                        <span class="tooltip">YouTube</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-discord"></i>
+                        <span class="tooltip">Discord</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-medium-m"></i>
+                        <span class="tooltip">Medium</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform Solutions -->
+        <div class="footer-column">
+            <h3>Platform Solutions</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Enterprise AI Orchestration</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Cognitive Automation Suite</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Neural Network Deployment</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Predictive Analytics Engine</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Intelligent Process Mining</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Multi-Modal AI Integration</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Custom Model Development</a></li>
+            </ul>
+        </div>
+
+        <!-- Industry Applications -->
+        <div class="footer-column">
+            <h3>Industry Applications</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Financial Services AI</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Healthcare Diagnostics</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Manufacturing Optimization</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Retail Intelligence</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>LegalTech Automation</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Education Technology</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Research & Development</a></li>
+            </ul>
+        </div>
+
+        <!-- Resources & Support -->
+        <div class="footer-column">
+            <h3>Resources & Support</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Technical Documentation</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>API Reference Library</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Developer Community</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Implementation Guides</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Case Studies & White Papers</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Research Publications</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Knowledge Base</a></li>
+            </ul>
+            
+            <div class="support-section">
+                <h4>Enterprise Support</h4>
+                <div class="support-contacts">
+                    <div class="contact-item">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <span class="contact-type">Technical Support</span>
+                            <span class="contact-detail">support@cognitiveai.tech</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <span class="contact-type">Enterprise Sales</span>
+                            <span class="contact-detail">enterprise@cognitiveai.tech</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal & Compliance -->
+        <div class="footer-column">
+            <h3>Legal & Compliance</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Master Service Agreement</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Data Processing Addendum</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Privacy Framework</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Security Compliance</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Terms of Service</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Acceptable Use Policy</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i>Service Level Agreement</a></li>
+            </ul>
+
+            <div class="certifications">
+                <h4>Certifications & Standards</h4>
+                <div class="cert-badges">
+                    <div class="cert-badge">SOC 2</div>
+                    <div class="cert-badge">GDPR</div>
+                    <div class="cert-badge">ISO 27001</div>
+                    <div class="cert-badge">HIPAA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <div class="copyright">
+                <p>&copy; 2024 Cognitive AI Technologies. All intellectual property rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Center</a>
+                <a href="#">Security</a>
+                <a href="#">Trust Center</a>
+                <a href="#">Compliance</a>
+                <a href="#">Accessibility</a>
+            </div>
+            <div class="global-presence">
+                <span>Global Presence: </span>
+                <span class="location">San Francisco</span>
+                •
+                <span class="location">New York</span>
+                •
+                <span class="location">London</span>
+                •
+                <span class="location">Singapore</span>
+                •
+                <span class="location">Tokyo</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #e2e8f0;
+    padding: 80px 40px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto 60px;
+    position: relative;
+}
+
+.footer-column h3 {
+    color: #f8fafc;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    border-radius: 2px;
+}
+
+.footer-column.main-info {
+    padding-right: 40px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #f8fafc;
+    margin-bottom: 15px;
+}
+
+.footer-logo span {
+    background: linear-gradient(45deg, #3b82f6, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.company-description {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.newsletter-section {
+    background: rgba(30, 41, 59, 0.6);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    margin-bottom: 30px;
+}
+
+.newsletter-section h4 {
+    color: #f8fafc;
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.newsletter-section p {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    background: #1e293b;
+    color: #f8fafc;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.newsletter-btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.newsletter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.social-links {
+    margin-top: 30px;
+}
+
+.social-title {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid #475569;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-link:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateY(-3px);
+    border-color: #3b82f6;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.tooltip {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #475569;
+}
+
+.social-link:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: -35px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-column ul li a:hover {
+    color: #3b82f6;
+    transform: translateX(5px);
+}
+
+.footer-column ul li a i {
+    font-size: 10px;
+    color: #3b82f6;
+}
+
+.support-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #475569;
+}
+
+.support-section h4 {
+    color: #f8fafc;
+    font-size: 15px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 8px 0;
+}
+
+.contact-item i {
+    color: #3b82f6;
+    font-size: 14px;
+    width: 16px;
+}
+
+.contact-type {
+    color: #94a3b8;
+    font-size: 12px;
+    display: block;
+}
+
+.contact-detail {
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.certifications {
+    margin-top: 25px;
+}
+
+.certifications h4 {
+    color: #f8fafc;
+    font-size: 15px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.cert-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cert-badge {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.footer-bottom {
+    border-top: 1px solid #475569;
+    padding: 30px 0;
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.footer-bottom-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright p {
+    color: #94a3b8;
+    font-size: 13px;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #3b82f6;
+}
+
+.global-presence {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.location {
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .footer-content {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    }
+    
+    .footer-column.main-info {
+        grid-column: 1 / -1;
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 60px 20px 0;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-links {
+        justify-content: center;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Newsletter form interaction
+    const newsletterForm = document.querySelector('.newsletter-form');
+    const newsletterInput = document.querySelector('.newsletter-input');
+    const newsletterBtn = document.querySelector('.newsletter-btn');
+    
+    newsletterBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (newsletterInput.value) {
+            newsletterBtn.innerHTML = '<i class="fas fa-check"></i><span>Subscribed!</span>';
+            newsletterBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            newsletterInput.value = '';
+            
+            setTimeout(() => {
+                newsletterBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span>Subscribe</span>';
+                newsletterBtn.style.background = 'linear-gradient(135deg, #3b82f6, #1d4ed8)';
+            }, 2000);
+        }
+    });
+    
+    // Social media tooltips
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            const tooltip = this.querySelector('.tooltip');
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+            tooltip.style.bottom = '-35px';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            const tooltip = this.querySelector('.tooltip');
+            tooltip.style.opacity = '0';
+            tooltip.style.visibility = 'hidden';
+            tooltip.style.bottom = '-40px';
+        });
+    });
+});
+</script>
+  
+    <script>
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate feature cards on scroll
+            const featureCards = document.querySelectorAll('.feature-card');
+            const steps = document.querySelectorAll('.step');
+            
+            const animateOnScroll = () => {
+                // Feature cards animation
+                featureCards.forEach((card, index) => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+                
+                // Steps animation
+                steps.forEach((step, index) => {
+                    const stepPosition = step.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (stepPosition < screenPosition) {
+                        setTimeout(() => {
+                            step.classList.add('visible');
+                        }, index * 150);
+                    }
+                });
+            };
+            
+            // Run once on load
+            animateOnScroll();
+            
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // FAQ toggle functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.padding = '15px 40px';
+                    nav.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.padding = '20px 40px';
+                    nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
