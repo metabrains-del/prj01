@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Narrative Orbit Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="dashboard-page">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sb-logo">
+            <img src="../assets/logo.png" alt="Narrative Orbit" class="admin-logo-img" width="32" height="32">
+            <span>Narrative<em>Orbit</em></span>
+        </div>
+        <nav class="sb-nav">
+            <a href="#" class="sb-link active" data-panel="overview">
+                <i class="fi fi-sr-chart-pie"></i><span>Overview</span>
+            </a>
+            <a href="#" class="sb-link" data-panel="quotes">
+                <i class="fi fi-rr-envelope"></i><span>Quote Requests</span>
+                <span class="sb-badge" id="quoteBadge">0</span>
+            </a>
+            <a href="#" class="sb-link" data-panel="team">
+                <i class="fi fi-sr-users"></i><span>Team</span>
+            </a>
+            <a href="#" class="sb-link" data-panel="settings">
+                <i class="fi fi-rr-settings"></i><span>Settings</span>
+            </a>
+        </nav>
+        <div class="sb-footer">
+            <button class="sb-logout" id="logoutBtn">
+                <i class="fi fi-rr-sign-out-alt"></i><span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="dash-main">
+        <header class="dash-header">
+            <div class="dh-left">
+                <h2 id="panelTitle">Overview</h2>
+                <span id="panelSub">Welcome back, Admin</span>
+            </div>
+            <div class="dh-right">
+                <span class="dh-time" id="dashTime"></span>
+                <a href="../index.html" class="dh-site-link" target="_blank">
+                    <i class="fi fi-rr-arrow-up-right-from-square"></i> View Site
+                </a>
+            </div>
+        </header>
+
+        <!-- Overview Panel -->
+        <div class="panel active" id="panel-overview">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="sc-icon"><i class="fi fi-rr-envelope"></i></div>
+                    <div class="sc-info">
+                        <span class="sc-num" id="totalQuotes">0</span>
+                        <span class="sc-label">Total Quotes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="sc-icon sc-green"><i class="fi fi-sr-check-circle"></i></div>
+                    <div class="sc-info">
+                        <span class="sc-num" id="newQuotes">0</span>
+                        <span class="sc-label">New (Unread)</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="sc-icon sc-purple"><i class="fi fi-rr-calendar"></i></div>
+                    <div class="sc-info">
+                        <span class="sc-num" id="todayQuotes">0</span>
+                        <span class="sc-label">Today</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="sc-icon sc-gold"><i class="fi fi-sr-star"></i></div>
+                    <div class="sc-info">
+                        <span class="sc-num">5</span>
+                        <span class="sc-label">Team Members</span>
+                    </div>
+                </div>
+            </div>
+            <div class="recent-section">
+                <h3>Recent Quote Requests</h3>
+                <div class="quotes-table-wrap">
+                    <table class="quotes-table" id="recentTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Budget</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentTableBody">
+                            <tr class="empty-row"><td colspan="6">No submissions yet.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quotes Panel -->
+        <div class="panel" id="panel-quotes">
+            <div class="panel-toolbar">
+                <input type="search" class="search-input" id="quoteSearch" placeholder="Search by name or email...">
+                <select class="filter-select" id="serviceFilter">
+                    <option value="">All Services</option>
+                    <option value="scriptwriting">Scriptwriting</option>
+                    <option value="video-editing">Video Editing</option>
+                    <option value="content-strategy">Content Strategy</option>
+                    <option value="full-production">Full Production</option>
+                </select>
+                <button class="btn-danger" id="clearAllBtn"><i class="fi fi-rr-trash"></i> Clear All</button>
+            </div>
+            <div class="quotes-table-wrap">
+                <table class="quotes-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Service</th>
+                            <th>Budget</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quotesTableBody">
+                        <tr class="empty-row"><td colspan="7">No submissions yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Team Panel -->
+        <div class="panel" id="panel-team">
+            <div class="team-admin-grid" id="teamAdminGrid"></div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="panel" id="panel-settings">
+            <div class="settings-card">
+                <h3>Change Password</h3>
+                <form id="changePasswordForm">
+                    <div class="lf-field">
+                        <label>Current Password</label>
+                        <div class="lf-input-wrap"><i class="fi fi-rr-lock"></i><input type="password" id="currentPw" placeholder="Current password"></div>
+                    </div>
+                    <div class="lf-field">
+                        <label>New Password</label>
+                        <div class="lf-input-wrap"><i class="fi fi-rr-lock"></i><input type="password" id="newPw" placeholder="New password (min 8 chars)"></div>
+                    </div>
+                    <div class="lf-field">
+                        <label>Confirm New Password</label>
+                        <div class="lf-input-wrap"><i class="fi fi-rr-lock"></i><input type="password" id="confirmPw" placeholder="Confirm new password"></div>
+                    </div>
+                    <div class="settings-msg" id="settingsMsg"></div>
+                    <button type="submit" class="login-btn" style="max-width:200px">Update Password</button>
+                </form>
+            </div>
+            <div class="settings-card">
+                <h3>Data Management</h3>
+                <p style="color:var(--text-2);font-size:0.9rem;margin-bottom:20px;">Export or clear all quote submissions from local storage.</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                    <button class="btn-export" id="exportBtn"><i class="fi fi-rr-download"></i> Export JSON</button>
+                    <button class="btn-danger" id="clearDataBtn"><i class="fi fi-rr-trash"></i> Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quote Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card" id="modalCard">
+            <button class="modal-close" id="modalClose"><i class="fi fi-rr-cross"></i></button>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
