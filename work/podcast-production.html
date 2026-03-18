@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Podcast-to-YouTube Pipeline — Narrative Orbit case study. Raw audio podcast turned into a top-50 YouTube show in 60 days.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Podcast-to-YouTube Pipeline — Narrative Orbit</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body class="loading">
+
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">
+                <img src="../assets/logo.png" alt="Narrative Orbit" class="loader-logo-img" width="90" height="90">
+                <span class="loader-brand">Narrative<em>Orbit</em></span>
+            </div>
+            <div class="loader-bar"><div class="loader-fill"></div></div>
+            <div class="loader-text">Loading Case Study</div>
+        </div>
+    </div>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/logo.png" alt="Narrative Orbit logo" class="nav-logo-img" width="36" height="36" loading="eager">
+                <span class="logo-text">Narrative<em>Orbit</em></span>
+            </a>
+            <div class="nav-center">
+                <a href="../index.html#about" class="nav-link"><span>About</span></a>
+                <a href="../index.html#services" class="nav-link"><span>Services</span></a>
+                <a href="../index.html#work" class="nav-link"><span>Work</span></a>
+                <a href="../index.html#team" class="nav-link"><span>Team</span></a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html#contact" class="nav-cta">
+                    <span>Get a Quote</span>
+                    <i class="fi fi-rr-arrow-right"></i>
+                </a>
+                <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-menu-inner">
+            <div class="mobile-links">
+                <a href="../index.html#about" class="mobile-nav-link"><span class="mn-num">01</span><span class="mn-text">About</span><i class="fi fi-rr-arrow-right"></i></a>
+                <a href="../index.html#services" class="mobile-nav-link"><span class="mn-num">02</span><span class="mn-text">Services</span><i class="fi fi-rr-arrow-right"></i></a>
+                <a href="../index.html#work" class="mobile-nav-link"><span class="mn-num">03</span><span class="mn-text">Work</span><i class="fi fi-rr-arrow-right"></i></a>
+                <a href="../index.html#team" class="mobile-nav-link"><span class="mn-num">04</span><span class="mn-text">Team</span><i class="fi fi-rr-arrow-right"></i></a>
+                <a href="../index.html#contact" class="mobile-nav-link"><span class="mn-num">05</span><span class="mn-text">Contact</span><i class="fi fi-rr-arrow-right"></i></a>
+            </div>
+            <div class="mobile-footer">
+                <span>© 2025 Narrative Orbit</span>
+                <div class="mobile-socials">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="cs-hero">
+        <div class="cs-hero-bg">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1600&q=80&auto=format&fit=crop" alt="Podcast video production" class="cs-hero-img" loading="eager">
+            <div class="cs-hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="cs-hero-content">
+                <a href="../index.html#work" class="cs-back">
+                    <i class="fi fi-rr-arrow-left"></i> Back to Work
+                </a>
+                <div class="cs-tag">Podcast · YouTube · Video Production · Clips Strategy</div>
+                <h1 class="cs-title">Podcast-to-YouTube<br><em>Pipeline</em></h1>
+                <p class="cs-sub">A business podcast with 12,000 Spotify listeners and zero YouTube presence. We built the full video production pipeline — full episodes, highlight clips, Shorts — and turned it into a top-50 business podcast on YouTube in 60 days.</p>
+                <div class="cs-hero-stats">
+                    <div class="cs-hstat"><span class="cs-hstat-num" data-count="60">0</span><span class="cs-hstat-label">Days to Top 50</span></div>
+                    <div class="cs-hstat-sep"></div>
+                    <div class="cs-hstat"><span class="cs-hstat-num" data-count="1900000">0</span><span class="cs-hstat-label">YouTube Views</span></div>
+                    <div class="cs-hstat-sep"></div>
+                    <div class="cs-hstat"><span class="cs-hstat-num" data-count="28000">0</span><span class="cs-hstat-label">New Subscribers</span></div>
+                    <div class="cs-hstat-sep"></div>
+                    <div class="cs-hstat"><span class="cs-hstat-num" data-count="5">0<span style="font-size:1.4rem">x</span></span><span class="cs-hstat-label">Sponsorship Rate Increase</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cs-section">
+        <div class="container">
+            <div class="cs-overview-grid">
+                <div class="cs-overview-main" data-scroll>
+                    <div class="section-tag">The Brief</div>
+                    <h2>A great podcast.<br><em>Invisible on YouTube.</em></h2>
+                    <p>The Leverage Lab — a weekly business and entrepreneurship podcast hosted by Kamran Javed — had been running for 3 years. Strong Spotify numbers, loyal listeners, great guests. But their YouTube channel had 1,200 subscribers and their videos were raw, unedited audio recordings with a static image. They were leaving an enormous audience on the table.</p>
+                    <p>Kamran came to us with a clear goal: turn the podcast into a proper YouTube show without changing what made it great. No over-production, no fake energy — just the real conversations, made watchable. We built a full production pipeline that processes each episode into a full-length YouTube video, 4–6 highlight clips, and 2 YouTube Shorts. All delivered within 48 hours of recording.</p>
+                    <p>Mehmood and Ahmar split the workload: Mehmood handles the full-length episode edits, Ahmar cuts the clips and Shorts. Khizar writes the titles, descriptions, and chapter markers. Shah manages the upload strategy and thumbnail testing.</p>
+                </div>
+                <div class="cs-overview-meta" data-scroll>
+                    <div class="cs-meta-card">
+                        <div class="cs-meta-item">
+                            <span class="cs-meta-label">Client</span>
+                            <span class="cs-meta-val">The Leverage Lab · Business Podcast</span>
+                        </div>
+                        <div class="cs-meta-item">
+                            <span class="cs-meta-label">Platform</span>
+                            <span class="cs-meta-val">YouTube (Full Episodes + Clips + Shorts)</span>
+                        </div>
+                        <div class="cs-meta-item">
+                            <span class="cs-meta-label">Services</span>
+                            <span class="cs-meta-val">Video Editing, Clips Production, Shorts, SEO, Thumbnail Design, Upload Strategy</span>
+                        </div>
+                        <div class="cs-meta-item">
+                            <span class="cs-meta-label">Team</span>
+                            <span class="cs-meta-val">Mehmood (Full Episodes), Ahmar (Clips + Shorts), Khizar (SEO + Titles), Shah (Strategy)</span>
+                        </div>
+                        <div class="cs-meta-item">
+                            <span class="cs-meta-label">Engagement</span>
+                            <span class="cs-meta-val">Ongoing Weekly Retainer</span>
+                        </div>
+                        <div class="cs-meta-item">
+                            <span class="cs-meta-label">Result</span>
+                            <span class="cs-meta-val" style="color: var(--accent);">Top-50 YouTube podcast · 1.9M views · 5x sponsorship rate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cs-section cs-section-dark">
+        <div class="container">
+            <div class="section-header" data-scroll>
+                <div class="section-tag">The Process</div>
+                <h2 class="section-title">One Recording.<br><em>Ten Pieces of Content.</em></h2>
+            </div>
+            <div class="cs-process-grid">
+                <div class="cs-process-step" data-scroll>
+                    <div class="cs-step-num">01</div>
+                    <div class="cs-step-icon"><i class="fi fi-sr-film"></i></div>
+                    <h3>Full Episode Production</h3>
+                    <p>Mehmood built a signature visual style for the show: a clean two-camera split with dynamic switching, lower thirds for guest names and titles, chapter cards at key topic transitions, and a branded intro/outro sequence. The editing removes dead air and filler without making the conversation feel choppy. Average episode length went from 68 minutes to a tighter 52 minutes — same content, better pacing.</p>
+                </div>
+                <div class="cs-process-step" data-scroll>
+                    <div class="cs-step-num">02</div>
+                    <div class="cs-step-icon"><i class="fi fi-sr-scissors"></i></div>
+                    <h3>Clip Engineering</h3>
+                    <p>Ahmar watches every episode and identifies the 4–6 moments with the highest standalone value — a counterintuitive insight, a strong story, a quotable line. Each clip is 60–90 seconds, reformatted for vertical viewing, with captions and a hook card at the start. These clips drive 40% of the channel's total views and are the primary subscriber acquisition tool.</p>
+                </div>
+                <div class="cs-process-step" data-scroll>
+                    <div class="cs-step-num">03</div>
+                    <div class="cs-step-icon"><i class="fi fi-sr-search"></i></div>
+                    <h3>SEO & Discovery</h3>
+                    <p>Khizar writes every title, description, and chapter marker with search intent in mind. We identified that business podcast listeners on YouTube search differently than Spotify listeners — they search for specific topics, not show names. Titles like "Why Most Founders Fail at Delegation (and How to Fix It)" outperform "The Leverage Lab Ep. 47" by 8x in click-through rate. This single change doubled organic discovery in the first month.</p>
+                </div>
+                <div class="cs-process-step" data-scroll>
+                    <div class="cs-step-num">04</div>
+                    <div class="cs-step-icon"><i class="fi fi-sr-target"></i></div>
+                    <h3>Thumbnail System</h3>
+                    <p>Shah built a thumbnail system that tests two variants per episode: one guest-focused (face + bold text), one topic-focused (graphic + headline). After 8 weeks of data, we found that topic-focused thumbnails outperformed guest-focused by 2.3x for new viewers — but guest-focused performed better for returning subscribers. We now use both strategically based on the episode's primary growth goal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cs-section">
+        <div class="container">
+            <div class="section-tag" data-scroll>The Work</div>
+            <div class="cs-gallery" data-scroll>
+                <div class="cs-gallery-main">
+                    <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=900&q=80&auto=format&fit=crop" alt="Podcast recording studio" loading="lazy" width="900" height="600">
+                </div>
+                <div class="cs-gallery-side">
+                    <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=500&q=80&auto=format&fit=crop" alt="Podcast microphone setup" loading="lazy" width="500" height="300">
+                    <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500&q=80&auto=format&fit=crop" alt="Video editing suite" loading="lazy" width="500" height="300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cs-section cs-section-dark">
+        <div class="container">
+            <div class="section-header" data-scroll>
+                <div class="section-tag">The Results</div>
+                <h2 class="section-title">60 Days.<br><em>Top 50.</em></h2>
+            </div>
+            <div class="cs-results-grid">
+                <div class="cs-result-card" data-scroll>
+                    <div class="cs-result-num" data-count="28000">0</div>
+                    <div class="cs-result-label">New YouTube Subscribers</div>
+                    <div class="cs-result-sub">From 1.2K to 29.2K in 60 days</div>
+                </div>
+                <div class="cs-result-card" data-scroll>
+                    <div class="cs-result-num" data-count="1900000">0</div>
+                    <div class="cs-result-label">Total Views</div>
+                    <div class="cs-result-sub">Clips drove 40% of total views</div>
+                </div>
+                <div class="cs-result-card" data-scroll>
+                    <div class="cs-result-num">Top<span style="font-size:1.8rem"> 50</span></div>
+                    <div class="cs-result-label">YouTube Business Podcasts</div>
+                    <div class="cs-result-sub">Ranked within 60 days of launch</div>
+                </div>
+                <div class="cs-result-card" data-scroll>
+                    <div class="cs-result-num">5<span>x</span></div>
+                    <div class="cs-result-label">Sponsorship Rate Increase</div>
+                    <div class="cs-result-sub">YouTube audience unlocked premium ad rates</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cs-section">
+        <div class="container">
+            <div class="cs-testi" data-scroll>
+                <div class="cs-testi-quote">"</div>
+                <p class="cs-testi-text">I'd been told for years that I needed to be on YouTube. I kept putting it off because I didn't want to deal with the production side. Narrative Orbit made it completely painless — I record the episode, they handle everything else. Within 60 days we were in the top 50 business podcasts on YouTube. My sponsorship rates went up 5x because I could now show sponsors a YouTube audience on top of Spotify. The ROI on this retainer is genuinely insane. I wish I'd done it two years ago.</p>
+                <div class="cs-testi-footer">
+                    <div class="testi-avatar" style="width:56px;height:56px;font-size:1rem;">KJ</div>
+                    <div>
+                        <strong>Kamran J.</strong>
+                        <span>Host · The Leverage Lab Podcast</span>
+                        <div class="testi-stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cs-cta-section">
+        <div class="container">
+            <div class="cs-cta" data-scroll>
+                <h2>Got a podcast that deserves<br><em>a bigger audience?</em></h2>
+                <p>Your best conversations shouldn't live only on Spotify. Let's build the YouTube presence your show deserves.</p>
+                <div class="cs-cta-actions">
+                    <a href="../index.html#contact" class="btn-primary">
+                        <span class="btn-text">Start a Project</span>
+                        <span class="btn-icon"><i class="fi fi-rr-arrow-right"></i></span>
+                    </a>
+                    <a href="../index.html#work" class="btn-outline">View More Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">Narrative<span>Orbit</span></div>
+                    <p>Stories that move people.<br>Content that builds empires.</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="fn-col">
+                        <h5>Studio</h5>
+                        <a href="../index.html#about">About</a>
+                        <a href="../index.html#services">Services</a>
+                        <a href="../index.html#work">Work</a>
+                        <a href="../index.html#team">Team</a>
+                    </div>
+                    <div class="fn-col">
+                        <h5>Services</h5>
+                        <a href="../index.html#services">Scriptwriting</a>
+                        <a href="../index.html#services">Video Editing</a>
+                        <a href="../index.html#services">Strategy</a>
+                        <a href="../index.html#services">Full Production</a>
+                    </div>
+                    <div class="fn-col">
+                        <h5>Connect</h5>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2025 Narrative Orbit. All rights reserved.</span>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <a href="../admin/login.html" class="footer-admin-link">Admin</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

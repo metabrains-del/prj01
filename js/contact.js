@@ -110,22 +110,38 @@
 
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
-        saveSubmission(data);
 
-        setTimeout(() => {
+        fetch('api/contact.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (result) {
             submitBtn.classList.remove('loading');
             submitBtn.disabled = false;
-            formSuccess.classList.add('show');
-            form.reset();
-            selected.clear();
-            chips.forEach(c => c.classList.remove('active'));
-            if (styleInput) styleInput.value = '';
-            Object.keys(fields).forEach(key => {
-                if (fields[key].el) fields[key].el.classList.remove('success', 'error');
-            });
-            if (charCount) charCount.textContent = '0 / 1000';
-            lastSubmit = Date.now();
-        }, 1400);
+            if (result.success) {
+                saveSubmission(data);
+                formSuccess.classList.add('show');
+                form.reset();
+                selected.clear();
+                chips.forEach(c => c.classList.remove('active'));
+                if (styleInput) styleInput.value = '';
+                Object.keys(fields).forEach(key => {
+                    if (fields[key].el) fields[key].el.classList.remove('success', 'error');
+                });
+                if (charCount) charCount.textContent = '0 / 1000';
+                lastSubmit = Date.now();
+            } else {
+                const msgs = result.errors ? result.errors.join(' ') : (result.message || 'Something went wrong. Please try again.');
+                showError(msgs);
+            }
+        })
+        .catch(function () {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            showError('Network error. Please check your connection and try again.');
+        });
     });
 
     function showError(msg) {

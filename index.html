@@ -6,6 +6,7 @@
     <meta name="description" content="Narrative Orbit — A premium content creation studio specializing in cinematic video production, scriptwriting, and brand storytelling.">
     <meta name="theme-color" content="#0a0a0f">
     <title>Narrative Orbit — Premium Content Studio</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -53,6 +54,9 @@
                 <a href="#team" class="nav-link" data-cursor="link"><span>Team</span></a>
             </div>
             <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+                    <i class="fi fi-rr-moon" id="themeIcon"></i>
+                </button>
                 <a href="#contact" class="nav-cta" data-cursor="button">
                     <span>Get a Quote</span>
                     <i class="fi fi-rr-arrow-right"></i>
@@ -376,6 +380,66 @@
                 </div>
             </div>
 
+            <!-- GenAISkool Feature Block -->
+            <div class="client-feature" data-scroll style="margin-top: 24px;">
+                <div class="cf-badge" style="background: var(--accent);">YouTube Client</div>
+                <div class="cf-inner">
+                    <div class="cf-left">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80&auto=format&fit=crop" alt="GenAISkool AI education YouTube" class="cf-img" loading="lazy" width="600" height="400">
+                        <div class="cf-img-overlay"></div>
+                    </div>
+                    <div class="cf-right">
+                        <div class="cf-logo-row">
+                            <span class="cf-client-name" style="color: var(--accent);">GenAISkool</span>
+                            <a href="https://www.youtube.com/@GenAISkool" target="_blank" rel="noopener" class="cf-visit-link">
+                                YouTube Channel <i class="fi fi-rr-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                        <p class="cf-desc">GenAISkool is a fast-growing YouTube channel teaching everyday people how to use AI tools to build income streams, automate workflows, and stay ahead of the curve. We handle their full content pipeline — scripts, edits, thumbnails, and strategy.</p>
+                        <div class="cf-stats">
+                            <div class="cf-stat">
+                                <span class="cf-stat-num" data-count="38">0</span>
+                                <span class="cf-stat-label">Videos Produced</span>
+                            </div>
+                            <div class="cf-stat">
+                                <span class="cf-stat-num" data-count="4200000">0</span>
+                                <span class="cf-stat-label">Total Views</span>
+                            </div>
+                            <div class="cf-stat">
+                                <span class="cf-stat-num" data-count="91">0<span style="font-size:1.2rem">K+</span></span>
+                                <span class="cf-stat-label">Subscribers</span>
+                            </div>
+                        </div>
+                        <div class="cf-courses">
+                            <a href="work/genaiskool.html" class="cf-course-item">
+                                <div class="cf-course-icon"><i class="fi fi-sr-robot"></i></div>
+                                <div>
+                                    <strong>How I Made $4,000 with ChatGPT in 30 Days</strong>
+                                    <span>1.2M Views · Top Performer</span>
+                                </div>
+                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                            </a>
+                            <a href="work/genaiskool.html" class="cf-course-item">
+                                <div class="cf-course-icon"><i class="fi fi-sr-magic-wand"></i></div>
+                                <div>
+                                    <strong>5 AI Tools That Replace a Full-Time Employee</strong>
+                                    <span>870K Views · Trending</span>
+                                </div>
+                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                            </a>
+                            <a href="work/genaiskool.html" class="cf-course-item">
+                                <div class="cf-course-icon"><i class="fi fi-sr-chart-line-up"></i></div>
+                                <div>
+                                    <strong>The AI Automation Blueprint for Beginners</strong>
+                                    <span>640K Views · Series Opener</span>
+                                </div>
+                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="work-grid" style="margin-top: 40px;">
                 <div class="work-item wi-large" data-scroll>
                     <a href="work/documentary-brand-story.html" class="wi-inner">
@@ -406,28 +470,52 @@
                     </a>
                 </div>
                 <div class="work-item" data-scroll>
-                    <div class="wi-inner">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80&auto=format&fit=crop" alt="Education course production" class="wi-img" loading="lazy" width="600" height="400">
+                    <a href="work/genaiskool.html" class="wi-inner">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80&auto=format&fit=crop" alt="GenAISkool YouTube channel" class="wi-img" loading="lazy" width="600" height="400">
                         <div class="wi-content">
-                            <div class="wi-tag">Education · MetaBrains</div>
-                            <h3>AI Course Content Series</h3>
-                            <p>Scripts &amp; production for MetaBrains' GenAI Revenue Accelerator — 203 lessons.</p>
-                            <div class="wi-meta"><span>Scriptwriting</span><span>Full Production</span></div>
+                            <div class="wi-tag">YouTube · Full Production</div>
+                            <h3>GenAISkool Channel Growth</h3>
+                            <p>0 to 91K subscribers. 4.2M views. Full pipeline ownership.</p>
+                            <div class="wi-meta"><span>Scripts</span><span>Editing</span><span>Strategy</span></div>
                         </div>
-                        <a href="https://metabrains.org" target="_blank" rel="noopener" class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></a>
-                    </div>
+                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
+                    </a>
                 </div>
                 <div class="work-item wi-large" data-scroll>
-                    <div class="wi-inner">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop" alt="Data and analytics content" class="wi-img" loading="lazy" width="800" height="450">
+                    <a href="work/saas-launch-campaign.html" class="wi-inner">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop" alt="SaaS product launch" class="wi-img" loading="lazy" width="800" height="450">
                         <div class="wi-content">
-                            <div class="wi-tag">Education · MetaBrains</div>
-                            <h3>Trading Bot &amp; Python Course Production</h3>
-                            <p>End-to-end content production for MetaBrains' most advanced technical courses.</p>
+                            <div class="wi-tag">SaaS · Product Launch</div>
+                            <h3>SaaS Launch Video Campaign</h3>
+                            <p>3-video launch sequence that drove 1,800 signups in the first week.</p>
                             <div class="wi-meta"><span>Ad Script</span><span>Video Editing</span><span>Motion Graphics</span></div>
                         </div>
-                        <a href="https://metabrains.org" target="_blank" rel="noopener" class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></a>
-                    </div>
+                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
+                    </a>
+                </div>
+                <div class="work-item" data-scroll>
+                    <a href="work/fitness-brand-reels.html" class="wi-inner">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&auto=format&fit=crop" alt="Fitness brand content" class="wi-img" loading="lazy" width="600" height="400">
+                        <div class="wi-content">
+                            <div class="wi-tag">Fitness · Brand Identity</div>
+                            <h3>Fitness Brand Content Overhaul</h3>
+                            <p>Rebuilt a fitness brand's entire content presence. 3x revenue in 90 days.</p>
+                            <div class="wi-meta"><span>Reels</span><span>Brand Voice</span></div>
+                        </div>
+                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
+                    </a>
+                </div>
+                <div class="work-item" data-scroll>
+                    <a href="work/podcast-production.html" class="wi-inner">
+                        <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&q=80&auto=format&fit=crop" alt="Podcast video production" class="wi-img" loading="lazy" width="600" height="400">
+                        <div class="wi-content">
+                            <div class="wi-tag">Podcast · Video Production</div>
+                            <h3>Podcast-to-YouTube Pipeline</h3>
+                            <p>Turned a raw audio podcast into a top-50 YouTube show in 60 days.</p>
+                            <div class="wi-meta"><span>Video Edit</span><span>Clips</span><span>SEO</span></div>
+                        </div>
+                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -439,93 +527,176 @@
             <div class="section-header" data-scroll>
                 <div class="section-tag">04 — The Crew</div>
                 <h2 class="section-title">Meet the <em>NarrativeCore</em></h2>
-                <p class="section-sub">Five creatives. One obsession. Stories that orbit the mind.</p>
+                <p class="section-sub">Seven creatives. One obsession. Stories that orbit the mind.</p>
             </div>
-            <div class="team-grid">
-                <div class="team-card team-lead" data-scroll>
-                    <div class="tc-visual">
-                        <div class="tc-img-wrap">
-                            <div class="tc-img-placeholder"><i class="fi fi-sr-user"></i></div>
-                        </div>
-                        <div class="tc-glow"></div>
-                    </div>
-                    <div class="tc-info">
-                        <div class="tc-role">Founder &amp; CEO · Content Creator</div>
-                        <h3>Shah Nawaz</h3>
-                        <p>The architect of Narrative Orbit. Shah built this studio from the ground up — setting the creative vision, leading client relationships, and ensuring every piece of content is engineered to perform. He doesn't just create; he builds systems that scale.</p>
-                        <div class="tc-tags"><span>CEO</span><span>Strategy</span><span>Creative Direction</span><span>Ideation</span></div>
-                        <div class="tc-socials">
-                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
+
+            <!-- ── FOUNDERS ── -->
+            <div class="team-group" data-scroll>
+                <div class="team-group-label">
+                    <span class="tgl-line"></span>
+                    <span class="tgl-text">Founders</span>
+                    <span class="tgl-line"></span>
                 </div>
-                <div class="team-card" data-scroll>
-                    <div class="tc-visual">
-                        <div class="tc-img-wrap"><div class="tc-img-placeholder"><i class="fi fi-sr-user"></i></div></div>
-                        <div class="tc-glow"></div>
-                    </div>
-                    <div class="tc-info">
-                        <div class="tc-role">Scriptwriter</div>
-                        <h3>Khizar</h3>
-                        <p>Crafts hooks that stop the scroll and narratives that hold attention from the first second to the last frame.</p>
-                        <div class="tc-tags"><span>YouTube Scripts</span><span>Hooks</span></div>
-                        <div class="tc-socials">
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <div class="team-founders-grid">
+                    <div class="team-card team-lead" data-scroll>
+                        <div class="tc-visual">
+                            <div class="tc-img-wrap">
+                                <img src="team/shah-nawaz.jpg" alt="Shah Nawaz" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                            </div>
+                            <div class="tc-glow"></div>
+                        </div>
+                        <div class="tc-info">
+                            <div class="tc-role">Founder &amp; CEO · Content Creator</div>
+                            <h3>Shah Nawaz</h3>
+                            <p>The architect of Narrative Orbit. Shah built this studio from the ground up — setting the creative vision, leading client relationships, and ensuring every piece of content is engineered to perform. He doesn't just create; he builds systems that scale.</p>
+                            <div class="tc-tags"><span>CEO</span><span>Strategy</span><span>Creative Direction</span><span>Ideation</span></div>
+                            <div class="tc-socials">
+                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-card" data-scroll>
-                    <div class="tc-visual">
-                        <div class="tc-img-wrap"><div class="tc-img-placeholder"><i class="fi fi-sr-user"></i></div></div>
-                        <div class="tc-glow"></div>
-                    </div>
-                    <div class="tc-info">
-                        <div class="tc-role">Video Editor</div>
-                        <h3>Mehmood</h3>
-                        <p>Transforms raw footage into cinematic stories with sharp cuts, motion graphics, and immersive sound design.</p>
-                        <div class="tc-tags"><span>Premiere Pro</span><span>After Effects</span></div>
-                        <div class="tc-socials">
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <div class="team-card team-lead team-cofounder" data-scroll>
+                        <div class="tc-visual">
+                            <div class="tc-img-wrap">
+                                <img src="team/mohsin.jpg" alt="Mohsin" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                            </div>
+                            <div class="tc-glow"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="team-card" data-scroll>
-                    <div class="tc-visual">
-                        <div class="tc-img-wrap"><div class="tc-img-placeholder"><i class="fi fi-sr-user"></i></div></div>
-                        <div class="tc-glow"></div>
-                    </div>
-                    <div class="tc-info">
-                        <div class="tc-role">Co-Founder · Lead Editor</div>
-                        <h3>Mohsin</h3>
-                        <p>Co-founder and the engine behind Narrative Orbit's editing department. Mohsin leads the entire post-production pipeline — from short-form reels to long-form cinematic cuts — and sets the visual standard for everything that leaves the studio.</p>
-                        <div class="tc-tags"><span>Co-Founder</span><span>Reels</span><span>TikTok</span><span>Pipeline Lead</span></div>
-                        <div class="tc-socials">
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-card" data-scroll>
-                    <div class="tc-visual">
-                        <div class="tc-img-wrap"><div class="tc-img-placeholder"><i class="fi fi-sr-user"></i></div></div>
-                        <div class="tc-glow"></div>
-                    </div>
-                    <div class="tc-info">
-                        <div class="tc-role">Scriptwriter</div>
-                        <h3>Hammad</h3>
-                        <p>Writes with precision and personality — from punchy ad scripts to long-form educational content.</p>
-                        <div class="tc-tags"><span>Ad Scripts</span><span>Long-Form</span></div>
-                        <div class="tc-socials">
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <div class="tc-info">
+                            <div class="tc-role">Co-Founder &amp; Head of Post-Production</div>
+                            <h3>Mohsin</h3>
+                            <p>The co-founder who built Narrative Orbit's entire editing department from scratch. Mohsin owns the post-production pipeline end-to-end — from short-form reels to long-form cinematic cuts — and sets the visual standard for everything that leaves the studio. If it looks world-class, Mohsin made it that way.</p>
+                            <div class="tc-tags"><span>Co-Founder</span><span>Post-Production</span><span>Reels</span><span>TikTok</span><span>Pipeline Lead</span></div>
+                            <div class="tc-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- ── EDITORS ── -->
+            <div class="team-group" data-scroll>
+                <div class="team-group-label">
+                    <span class="tgl-line"></span>
+                    <span class="tgl-text">Editors</span>
+                    <span class="tgl-line"></span>
+                </div>
+                <div class="team-members-grid">
+                    <div class="team-card team-editor" data-scroll>
+                        <div class="tc-visual">
+                            <div class="tc-img-wrap">
+                                <img src="team/mehmood.jpg" alt="Mehmood" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                            </div>
+                            <div class="tc-glow"></div>
+                        </div>
+                        <div class="tc-info">
+                            <div class="tc-role">Video Editor</div>
+                            <h3>Mehmood</h3>
+                            <p>Transforms raw footage into cinematic stories with sharp cuts, motion graphics, and immersive sound design.</p>
+                            <div class="tc-tags"><span>Premiere Pro</span><span>After Effects</span></div>
+                            <div class="tc-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card team-editor" data-scroll>
+                        <div class="tc-visual">
+                            <div class="tc-img-wrap">
+                                <img src="team/ahmar.jpg" alt="Ahmar" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                            </div>
+                            <div class="tc-glow"></div>
+                        </div>
+                        <div class="tc-info">
+                            <div class="tc-role">Video Editor</div>
+                            <h3>Ahmar</h3>
+                            <p>Brings energy and precision to every cut. Ahmar specialises in fast-paced short-form content and motion-heavy edits that keep viewers locked in.</p>
+                            <div class="tc-tags"><span>Short-Form</span><span>Motion</span><span>Color</span></div>
+                            <div class="tc-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SCRIPTWRITERS ── -->
+            <div class="team-group" data-scroll>
+                <div class="team-group-label">
+                    <span class="tgl-line"></span>
+                    <span class="tgl-text">Scriptwriters</span>
+                    <span class="tgl-line"></span>
+                </div>
+                <div class="team-members-grid">
+                    <div class="team-card team-writer" data-scroll>
+                        <div class="tc-visual">
+                            <div class="tc-img-wrap">
+                                <img src="team/khizar.jpg" alt="Khizar" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                            </div>
+                            <div class="tc-glow"></div>
+                        </div>
+                        <div class="tc-info">
+                            <div class="tc-role">Scriptwriter</div>
+                            <h3>Khizar</h3>
+                            <p>Crafts hooks that stop the scroll and narratives that hold attention from the first second to the last frame.</p>
+                            <div class="tc-tags"><span>YouTube Scripts</span><span>Hooks</span></div>
+                            <div class="tc-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card team-writer" data-scroll>
+                        <div class="tc-visual">
+                            <div class="tc-img-wrap">
+                                <img src="team/hammad.jpg" alt="Hammad" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                            </div>
+                            <div class="tc-glow"></div>
+                        </div>
+                        <div class="tc-info">
+                            <div class="tc-role">Scriptwriter</div>
+                            <h3>Hammad</h3>
+                            <p>Writes with precision and personality — from punchy ad scripts to long-form educational content.</p>
+                            <div class="tc-tags"><span>Ad Scripts</span><span>Long-Form</span></div>
+                            <div class="tc-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card team-writer" data-scroll>
+                        <div class="tc-visual">
+                            <div class="tc-img-wrap">
+                                <img src="team/ayesha.jpg" alt="Ayesha" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                            </div>
+                            <div class="tc-glow"></div>
+                        </div>
+                        <div class="tc-info">
+                            <div class="tc-role">Scriptwriter</div>
+                            <h3>Ayesha</h3>
+                            <p>Storyteller at heart. Ayesha writes scripts that feel human — emotionally resonant, platform-native, and built to convert.</p>
+                            <div class="tc-tags"><span>Brand Voice</span><span>Reels</span><span>Storytelling</span></div>
+                            <div class="tc-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -540,81 +711,81 @@
             <div class="testi-grid">
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>Narrative Orbit completely transformed our YouTube channel. The scripts are sharp, the edits are cinematic, and our watch time doubled in just 3 months. Shah and the team are the real deal.</p>
+                    <p>honestly didn't expect much when we first reached out but shah completely changed how i think about content. our watch time went from like 4 mins avg to almost 9. the scripts just hit different.</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">AK</div>
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ahmed K." class="testi-avatar-img">
                         <div><strong>Ahmed K.</strong><span>YouTube Creator · 180K subs</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>Shah Nawaz and the team just get it. They understood our brand voice immediately and delivered content that felt authentic, on-brand, and performed incredibly well across every platform.</p>
+                    <p>we've tried 3 other agencies before these guys. none of them got our brand voice right. narrative orbit nailed it on the first draft. didn't even need major revisions which never happens lol</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">SR</div>
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sara R." class="testi-avatar-img">
                         <div><strong>Sara R.</strong><span>Brand Manager · E-commerce</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>The scriptwriting alone is worth every penny. Khizar and Hammad write hooks that actually stop the scroll. Our reel views went through the roof — 500K in two weeks is insane.</p>
+                    <p>bro the hooks khizar writes are actually crazy. i posted one reel and it hit 200k before i even woke up the next morning. been working with them for 4 months now and not stopping anytime soon</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">ZM</div>
+                        <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Zain M." class="testi-avatar-img">
                         <div><strong>Zain M.</strong><span>Founder · SaaS Startup</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>Mohsin's editing is on another level. The pacing, the cuts, the color — it all feels like a Netflix production. Our audience retention went from 35% to 68% after switching to Narrative Orbit.</p>
+                    <p>mohsin's editing is just on another level. i sent him raw footage that i thought was unusable and he turned it into something i was genuinely proud to post. retention jumped from 34% to 71% no joke</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">FH</div>
+                        <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Farhan H." class="testi-avatar-img">
                         <div><strong>Farhan H.</strong><span>Tech YouTuber · 320K subs</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>We hired them for a product launch video and it exceeded every expectation. The script was tight, the edit was cinematic, and the ad converted at 4.2x our previous benchmark. Incredible ROI.</p>
+                    <p>we needed a product launch video in 6 days. most people would've said no. these guys said yes and delivered something that outperformed every ad we've ever run. still can't believe the turnaround</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">NB</div>
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Nadia B." class="testi-avatar-img">
                         <div><strong>Nadia B.</strong><span>CMO · D2C Brand</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>I've worked with a lot of content agencies. Narrative Orbit is the first one that actually thinks strategically. They don't just execute — they push back, improve ideas, and deliver something better than what you imagined.</p>
+                    <p>what i appreciate most is they actually push back when your idea isn't great. most freelancers just say yes to everything. shah told me my concept was weak and gave me something 10x better. that's rare</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">OM</div>
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Omar M." class="testi-avatar-img">
                         <div><strong>Omar M.</strong><span>Entrepreneur · Finance Niche</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>Mehmood edited our entire 10-part course series and every single episode looked and felt premium. Students kept commenting on the production quality. It genuinely elevated our brand perception overnight.</p>
+                    <p>had mehmood edit my entire course series — 10 episodes. every single one looked polished and consistent. my students literally started commenting on the production quality which had never happened before</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">RA</div>
+                        <img src="https://randomuser.me/api/portraits/women/26.jpg" alt="Rania A." class="testi-avatar-img">
                         <div><strong>Rania A.</strong><span>Online Educator · 45K students</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>Fast, professional, and genuinely talented. We gave them a rough brief on a Monday and had a polished, ready-to-publish script by Wednesday. The turnaround speed without sacrificing quality is unmatched.</p>
+                    <p>sent a rough brief monday morning, had a full polished script by wednesday afternoon. and it wasn't just fast — it was genuinely good. like better than stuff i've spent weeks writing myself</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">KJ</div>
+                        <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Kamran J." class="testi-avatar-img">
                         <div><strong>Kamran J.</strong><span>Podcast Host · Media Company</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
                 </div>
                 <div class="testi-card" data-scroll>
                     <div class="testi-quote">"</div>
-                    <p>Working with Narrative Orbit on our MetaBrains course content was seamless. They understood the technical subject matter, translated it into engaging scripts, and the production quality made our courses stand out in a crowded market.</p>
+                    <p>they produced scripts for 6 of our metabrains courses and understood the technical content better than people we've hired full time. the lessons are clear, engaging, and students actually finish them</p>
                     <div class="testi-footer">
-                        <div class="testi-avatar">MB</div>
+                        <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="MetaBrains Team" class="testi-avatar-img">
                         <div><strong>MetaBrains Team</strong><span>EdTech Platform · metabrains.org</span></div>
                         <div class="testi-stars">★★★★★</div>
                     </div>
@@ -890,5 +1061,6 @@
 
     <script src="js/main.js"></script>
     <script src="js/contact.js"></script>
+    <script src="js/orbitbot.js"></script>
 </body>
 </html>

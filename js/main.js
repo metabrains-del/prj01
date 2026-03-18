@@ -4,15 +4,135 @@
 (function () {
     'use strict';
 
-    /* ── LOADER ─────────────────────────────────────────── */
+    /* ── THEME TOGGLE (desktop only) ────────────────────── */
+    var themeToggle = document.getElementById('themeToggle');
+    var themeIcon   = document.getElementById('themeIcon');
+
+    function applyTheme(isLight) {
+        document.body.classList.toggle('light', isLight);
+        // swap icon: moon for dark mode, sun for light mode
+        themeIcon.className = isLight ? 'fi fi-rr-sun' : 'fi fi-rr-moon';
+    }
+
+    // Restore saved preference
+    var savedTheme = localStorage.getItem('theme');
+    applyTheme(savedTheme === 'light');
+
+    themeToggle.addEventListener('click', function () {
+        var isLight = !document.body.classList.contains('light');
+        applyTheme(isLight);
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    /* ── LOADER (Netflix-style cinematic exit) ───────────── */
     window.addEventListener('load', function () {
         setTimeout(function () {
-            var loader = document.getElementById('loader');
-            if (loader) {
-                loader.classList.add('hidden');
-                document.body.classList.remove('loading');
-            }
-        }, 1600);
+            var loader    = document.getElementById('loader');
+            if (!loader) return;
+
+            var loaderImg   = loader.querySelector('.loader-logo-img');
+            var loaderBrand = loader.querySelector('.loader-brand');
+            var loaderBar   = loader.querySelector('.loader-bar');
+            var loaderText  = loader.querySelector('.loader-text');
+
+            /* ── Step 1: slowly fade out brand / bar / text ── */
+            [loaderBrand, loaderBar, loaderText].forEach(function (el) {
+                if (!el) return;
+                el.style.transition = 'opacity 0.6s ease';
+                el.style.opacity    = '0';
+            });
+
+            /* ── Step 2: after text is gone, launch the logo flight ── */
+            setTimeout(function () {
+                if (!loaderImg) return;
+
+                /* Snapshot logo center before we touch anything */
+                var rect = loaderImg.getBoundingClientRect();
+                var srcX = rect.left + rect.width  / 2;
+                var srcY = rect.top  + rect.height / 2;
+
+                /* Read the actual toggle position — works on every screen size */
+                var toggleBtn = document.getElementById('orbitbotToggle');
+                var destX, destY;
+                if (toggleBtn) {
+                    /* Toggle is hidden (scale 0) so getBoundingClientRect gives 0,0.
+                       Use its CSS bottom/right to compute center manually. */
+                    var vw        = window.innerWidth;
+                    var vh        = window.innerHeight;
+                    var style     = getComputedStyle(toggleBtn);
+                    var btnW      = 60;
+                    var btnH      = 60;
+                    var bottom    = parseFloat(style.bottom) || (vw <= 480 ? 20 : 28);
+                    var right     = parseFloat(style.right)  || (vw <= 480 ? 16 : 28);
+                    destX = vw - right  - btnW / 2;
+                    destY = vh - bottom - btnH / 2;
+                } else {
+                    /* Fallback */
+                    destX = window.innerWidth  - 58;
+                    destY = window.innerHeight - 58;
+                }
+
+                /* Scale: 90px → 32px (size of logo inside toggle) */
+                var targetScale = 32 / rect.width;
+
+                /* Create a free-floating clone — no CSS animations attached */
+                var fly = document.createElement('img');
+                fly.src = loaderImg.src;
+                fly.setAttribute('aria-hidden', 'true');
+                fly.style.cssText = [
+                    'position:fixed',
+                    'width:'  + rect.width  + 'px',
+                    'height:' + rect.height + 'px',
+                    'left:'   + srcX + 'px',
+                    'top:'    + srcY + 'px',
+                    'transform:translate(-50%,-50%) scale(1)',
+                    'object-fit:contain',
+                    'filter:'  + getComputedStyle(loaderImg).filter,
+                    'z-index:10002',
+                    'pointer-events:none',
+                    'will-change:transform,opacity',
+                    'transition:none'
+                ].join(';');
+                document.body.appendChild(fly);
+
+                /* Hide original so no double */
+                loaderImg.style.opacity = '0';
+
+                /* Fade the dark overlay slowly — stays visible while logo travels */
+                loader.style.transition = 'opacity 1.1s ease 0.3s';
+                loader.style.opacity    = '0';
+
+                /* Force reflow — browser must register start state before animating */
+                fly.getBoundingClientRect();
+
+                /* Cinematic flight:
+                   - 1.4s travel with a slow-in / ease-out arc
+                   - opacity fades only in the last 0.3s of the journey          */
+                fly.style.transition = [
+                    'transform 1.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    'opacity   0.35s ease 1.1s'
+                ].join(',');
+                fly.style.transform = [
+                    'translate(-50%,-50%)',
+                    'translate(' + (destX - srcX) + 'px,' + (destY - srcY) + 'px)',
+                    'scale(' + targetScale + ')'
+                ].join(' ');
+                fly.style.opacity = '0';
+
+                /* ── Step 3: clean up and pop the toggle in ── */
+                setTimeout(function () {
+                    loader.classList.add('hidden');
+                    document.body.classList.remove('loading');
+                    fly.remove();
+
+                    if (toggleBtn) {
+                        toggleBtn.classList.add('orbit-land');
+                    }
+                }, 1550);
+
+            }, 500); /* wait for text/bar to fade */
+
+        }, 1400);
     });
 
     /* ── CUSTOM CURSOR (desktop / fine pointer only) ─────── */

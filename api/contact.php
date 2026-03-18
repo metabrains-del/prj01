@@ -12,10 +12,14 @@ header('X-XSS-Protection: 1; mode=block');
 header('Referrer-Policy: strict-origin-when-cross-origin');
 
 // ===== CORS (restrict to your domain in production) =====
-$allowed_origin = 'https://narrativeorbit.com'; // Change to your domain
+$allowed_origins = [
+    'https://narrativeorbit.com',
+    'http://localhost',
+    'http://127.0.0.1',
+];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if ($origin === $allowed_origin || (defined('DEV_MODE') && DEV_MODE)) {
-    header('Access-Control-Allow-Origin: ' . $allowed_origin);
+if (in_array($origin, $allowed_origins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
 }
 
 // ===== METHOD CHECK =====
@@ -68,11 +72,19 @@ function sanitize_input(string $str, int $max = 500): string {
 // ===== VALIDATE =====
 $errors = [];
 
-$name = sanitize_input($data['name'] ?? '', 80);
-$email = sanitize_input($data['email'] ?? '', 254);
-$service = sanitize_input($data['service'] ?? '', 50);
-$budget = sanitize_input($data['budget'] ?? '', 50);
-$message = sanitize_input($data['message'] ?? '', 1000);
+$name     = sanitize_input($data['name']     ?? '', 80);
+$email    = sanitize_input($data['email']    ?? '', 254);
+$phone    = sanitize_input($data['phone']    ?? '', 30);
+$company  = sanitize_input($data['company']  ?? '', 100);
+$service  = sanitize_input($data['service']  ?? '', 50);
+$budget   = sanitize_input($data['budget']   ?? '', 50);
+$platform = sanitize_input($data['platform'] ?? '', 50);
+$duration = sanitize_input($data['duration'] ?? '', 50);
+$market   = sanitize_input($data['market']   ?? '', 50);
+$timeline = sanitize_input($data['timeline'] ?? '', 50);
+$style    = sanitize_input($data['style']    ?? '', 200);
+$message  = sanitize_input($data['message']  ?? '', 1000);
+$reference= sanitize_input($data['reference']?? '', 500);
 
 if (empty($name) || mb_strlen($name) < 2) {
     $errors[] = 'Name is required (min 2 characters).';
@@ -80,7 +92,7 @@ if (empty($name) || mb_strlen($name) < 2) {
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = 'A valid email address is required.';
 }
-$allowed_services = ['scriptwriting', 'video-editing', 'content-strategy', 'full-production', 'other'];
+$allowed_services = ['scriptwriting', 'video-editing', 'script-edit', 'content-strategy', 'full-production', 'reels-shorts', 'ad-campaign', 'course-content', 'other'];
 if (empty($service) || !in_array($service, $allowed_services, true)) {
     $errors[] = 'Please select a valid service.';
 }
@@ -98,10 +110,18 @@ if (!empty($errors)) {
 $submission = [
     'name'      => $name,
     'email'     => $email,
+    'phone'     => $phone,
+    'company'   => $company,
     'service'   => $service,
     'budget'    => $budget,
+    'platform'  => $platform,
+    'duration'  => $duration,
+    'market'    => $market,
+    'timeline'  => $timeline,
+    'style'     => $style,
     'message'   => $message,
-    'ip'        => hash('sha256', $_SERVER['REMOTE_ADDR']), // hashed for privacy
+    'reference' => $reference,
+    'ip'        => hash('sha256', $_SERVER['REMOTE_ADDR']),
     'timestamp' => date('c'),
     'read'      => false,
 ];
@@ -130,20 +150,31 @@ file_put_contents($storage_file, json_encode($submissions, JSON_PRETTY_PRINT), L
 $rate_data[] = $now;
 file_put_contents($rate_file, json_encode(array_values($rate_data)));
 
-// ===== SEND EMAIL (optional — configure SMTP in production) =====
-$to = 'hello@narrativeorbit.com'; // Change to your email
-$subject = 'New Quote Request from ' . $name;
-$body = "New quote request received:\n\n" .
-    "Name: $name\n" .
-    "Email: $email\n" .
-    "Service: $service\n" .
-    "Budget: $budget\n\n" .
-    "Message:\n$message\n\n" .
+// ===== SEND EMAIL =====
+$to = 'metabrainsdata@gmail.com';
+$subject = 'New Quote Request — ' . $name . ' (' . $service . ')';
+$body = "New quote request received via Narrative Orbit website.\n\n" .
+    "=== CONTACT INFO ===\n" .
+    "Name:     $name\n" .
+    "Email:    $email\n" .
+    "Phone:    $phone\n" .
+    "Company:  $company\n\n" .
+    "=== PROJECT DETAILS ===\n" .
+    "Service:  $service\n" .
+    "Budget:   $budget\n" .
+    "Platform: $platform\n" .
+    "Duration: $duration\n" .
+    "Market:   $market\n" .
+    "Timeline: $timeline\n" .
+    "Style:    $style\n\n" .
+    "=== MESSAGE ===\n" .
+    "$message\n\n" .
+    "=== REFERENCE ===\n" .
+    "$reference\n\n" .
     "Submitted: " . date('Y-m-d H:i:s');
 $headers = "From: noreply@narrativeorbit.com\r\nReply-To: $email\r\nX-Mailer: PHP/" . phpversion();
 
-// Uncomment to enable email:
-// mail($to, $subject, $body, $headers);
+mail($to, $subject, $body, $headers);
 
 // ===== RESPOND =====
 echo json_encode(['success' => true, 'message' => 'Your message has been received. We\'ll be in touch within 24 hours.']);
