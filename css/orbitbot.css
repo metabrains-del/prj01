@@ -297,7 +297,7 @@
 .ob-topic-chip-label { flex: 1; }
 .ob-topic-chip-arrow {
     color: var(--text-3);
-    font-size: 0.7rem;
+    width: 0.7rem; height: 0.7rem;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 .ob-topic-chip:hover .ob-topic-chip-arrow {
@@ -341,7 +341,7 @@
 .ob-qa-q:hover { color: var(--text); }
 .ob-qa-q.active { color: var(--primary-light); }
 .ob-qa-q-icon {
-    font-size: 0.65rem;
+    width: 0.65rem; height: 0.65rem;
     color: var(--text-3);
     transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), color 0.2s ease;
     flex-shrink: 0;
@@ -384,7 +384,7 @@
     text-transform: uppercase;
 }
 .ob-back-btn:hover { color: var(--primary-light); }
-.ob-back-btn i { font-size: 0.65rem; }
+.ob-back-btn svg { width: 0.65rem; height: 0.65rem; }
 
 /* ── FOOTER ── */
 .orbitbot-footer {

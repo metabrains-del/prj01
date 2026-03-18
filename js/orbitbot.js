@@ -9,7 +9,7 @@
     var topics = [
         {
             id: 'services',
-            icon: 'fi fi-sr-layers',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
             label: 'Our Services',
             qa: [
                 { q: 'What services does Narrative Orbit offer?', a: 'We offer Scriptwriting, Video Editing, Content Strategy, and Full Production pipelines — everything from concept to final export.' },
@@ -22,7 +22,7 @@
         },
         {
             id: 'pricing',
-            icon: 'fi fi-sr-badge-dollar',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
             label: 'Pricing & Packages',
             qa: [
                 { q: 'How much does a script cost?', a: 'Pricing depends on length and complexity. We offer custom quotes — reach out via the contact form and we\'ll get back to you within 24 hours.' },
@@ -35,7 +35,7 @@
         },
         {
             id: 'process',
-            icon: 'fi fi-sr-workflow',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
             label: 'Our Process',
             qa: [
                 { q: 'What does your workflow look like?', a: 'We start with a discovery call, then move to scripting, review, production, and final delivery. Every step is collaborative and transparent.' },
@@ -48,7 +48,7 @@
         },
         {
             id: 'work',
-            icon: 'fi fi-sr-film',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>',
             label: 'Portfolio & Work',
             qa: [
                 { q: 'Can I see examples of your work?', a: 'Yes — check out the Portfolio section on our site. We\'ve worked on documentary-style brand stories, viral reel series, and full course productions.' },
@@ -61,7 +61,7 @@
         },
         {
             id: 'team',
-            icon: 'fi fi-sr-users',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
             label: 'The Team',
             qa: [
                 { q: 'Who runs Narrative Orbit?', a: 'Shah Nawaz is the Founder & CEO, and Mohsin is the Co-Founder & Head of Post-Production. Together they built the studio from the ground up.' },
@@ -74,7 +74,7 @@
         },
         {
             id: 'contact',
-            icon: 'fi fi-sr-envelope',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
             label: 'Contact & Collab',
             qa: [
                 { q: 'How do I start a project?', a: 'Click "Get a Quote" on the site, fill in the form, and we\'ll reach out within 24 hours to schedule a discovery call.' },
@@ -87,7 +87,7 @@
         },
         {
             id: 'about',
-            icon: 'fi fi-sr-rocket-lunch',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
             label: 'About the Studio',
             qa: [
                 { q: 'What is Narrative Orbit?', a: 'Narrative Orbit is a premium content creation studio specialising in cinematic video production, scriptwriting, and brand storytelling.' },
@@ -101,16 +101,13 @@
     ];
 
     /* ── BUILD UI ─────────────────────────────────────────── */
-    var css = document.createElement('link');
-    css.rel = 'stylesheet';
-    css.href = 'css/orbitbot.css';
-    document.head.appendChild(css);
+    // CSS loaded via <link> in HTML head
 
     var html = [
         /* Toggle button */
         '<button class="orbitbot-toggle" id="orbitbotToggle" aria-label="Open OrbitBot">',
             '<img src="assets/logo.png" alt="" class="orbitbot-toggle-logo">',
-            '<span class="orbitbot-toggle-close"><i class="fi fi-rr-cross-small"></i></span>',
+            '<span class="orbitbot-toggle-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>',
         '</button>',
 
         /* Chat window */
@@ -186,9 +183,9 @@
                 var btn = document.createElement('button');
                 btn.className = 'ob-topic-chip';
                 btn.innerHTML =
-                    '<span class="ob-topic-chip-icon"><i class="' + topic.icon + '"></i></span>' +
+                    '<span class="ob-topic-chip-icon">' + topic.icon + '</span>' +
                     '<span class="ob-topic-chip-label">' + topic.label + '</span>' +
-                    '<i class="fi fi-rr-angle-right ob-topic-chip-arrow"></i>';
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ob-topic-chip-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
                 btn.addEventListener('click', function () { showTopic(topic); });
                 list.appendChild(btn);
             });
@@ -207,7 +204,7 @@
         backRow.style.marginBottom = '4px';
         var backBtn = document.createElement('button');
         backBtn.className = 'ob-back-btn';
-        backBtn.innerHTML = '<i class="fi fi-rr-arrow-left"></i> All Topics';
+        backBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> All Topics';
         backBtn.addEventListener('click', showHome);
         backRow.appendChild(backBtn);
         messages.appendChild(backRow);
@@ -224,7 +221,7 @@
 
                 var qBtn = document.createElement('button');
                 qBtn.className = 'ob-qa-q';
-                qBtn.innerHTML = item.q + '<i class="fi fi-rr-angle-down ob-qa-q-icon"></i>';
+                qBtn.innerHTML = item.q + '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ob-qa-q-icon" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
 
                 var aDiv = document.createElement('div');
                 aDiv.className = 'ob-qa-a';

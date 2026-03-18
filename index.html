@@ -4,25 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Narrative Orbit — A premium content creation studio specializing in cinematic video production, scriptwriting, and brand storytelling.">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0a0a0f">
+    <link rel="canonical" href="https://narrativeorbit.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Narrative Orbit">
+    <meta property="og:title" content="Narrative Orbit — Premium Content Studio">
+    <meta property="og:description" content="A premium content creation studio specializing in cinematic video production, scriptwriting, and brand storytelling.">
+    <meta property="og:url" content="https://narrativeorbit.com/">
+    <meta property="og:image" content="https://narrativeorbit.com/assets/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@narrativeorbit">
+    <meta name="twitter:title" content="Narrative Orbit — Premium Content Studio">
+    <meta name="twitter:description" content="A premium content creation studio specializing in cinematic video production, scriptwriting, and brand storytelling.">
+    <meta name="twitter:image" content="https://narrativeorbit.com/assets/og-image.jpg">
+
     <title>Narrative Orbit — Premium Content Studio</title>
-    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Narrative Orbit",
+      "url": "https://narrativeorbit.com",
+      "logo": "https://narrativeorbit.com/assets/logo.png",
+      "description": "A premium content creation studio specializing in cinematic video production, scriptwriting, and brand storytelling.",
+      "email": "hello@narrativeorbit.com",
+      "sameAs": [
+        "https://instagram.com/narrativeorbit",
+        "https://youtube.com/@NarrativeOrbit"
+      ],
+      "service": [
+        {"@type": "Service", "name": "Scriptwriting"},
+        {"@type": "Service", "name": "Video Editing"},
+        {"@type": "Service", "name": "Content Strategy"},
+        {"@type": "Service", "name": "Full Production"}
+      ]
+    }
+    </script>
+
+    <!-- Fonts: preconnect + non-blocking load with font-display=optional (no CLS) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-    <!-- Flaticon Uicons — premium icon set -->
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
-    <!-- Font Awesome kept for brand icons only -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=optional" rel="stylesheet"></noscript>
+
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/orbitbot.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="assets/logo.png" as="image">
 </head>
 <body class="loading">
 
     <!-- Page Loader -->
-    <div class="loader" id="loader">
+    <div class="loader" id="loader" role="status" aria-label="Loading Narrative Orbit">
         <div class="loader-inner">
             <div class="loader-logo">
                 <img src="assets/logo.png" alt="Narrative Orbit" class="loader-logo-img" width="90" height="90">
@@ -34,11 +73,11 @@
     </div>
 
     <!-- Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
     <!-- Noise overlay -->
-    <div class="noise"></div>
+    <div class="noise" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav id="nav">
@@ -55,13 +94,13 @@
             </div>
             <div class="nav-right">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
-                    <i class="fi fi-rr-moon" id="themeIcon"></i>
+                    <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 </button>
                 <a href="#contact" class="nav-cta" data-cursor="button">
                     <span>Get a Quote</span>
-                    <i class="fi fi-rr-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
-                <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+                <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
                     <span></span><span></span>
                 </button>
             </div>
@@ -69,49 +108,50 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-overlay" id="mobileOverlay">
+    <div class="mobile-overlay" id="mobileOverlay" role="navigation" aria-label="Mobile navigation" inert>
         <div class="mobile-menu-inner">
             <div class="mobile-links">
                 <a href="#about" class="mobile-nav-link">
                     <span class="mn-num">01</span>
                     <span class="mn-text">About</span>
-                    <i class="fi fi-rr-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
                 <a href="#services" class="mobile-nav-link">
                     <span class="mn-num">02</span>
                     <span class="mn-text">Services</span>
-                    <i class="fi fi-rr-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
                 <a href="#work" class="mobile-nav-link">
                     <span class="mn-num">03</span>
                     <span class="mn-text">Work</span>
-                    <i class="fi fi-rr-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
                 <a href="#team" class="mobile-nav-link">
                     <span class="mn-num">04</span>
                     <span class="mn-text">Team</span>
-                    <i class="fi fi-rr-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
                 <a href="#contact" class="mobile-nav-link">
                     <span class="mn-num">05</span>
                     <span class="mn-text">Contact</span>
-                    <i class="fi fi-rr-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
             <div class="mobile-footer">
                 <span>© 2025 Narrative Orbit</span>
                 <div class="mobile-socials">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    <a href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+                    <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ===== HERO ===== -->
+    <main id="main-content">
     <section class="hero" id="home">
-        <div class="hero-bg">
+        <div class="hero-bg" aria-hidden="true">
             <div class="hero-gradient"></div>
             <div class="hero-grid"></div>
             <div class="hero-orb orb-1"></div>
@@ -133,7 +173,7 @@
             <div class="hero-actions">
                 <a href="#contact" class="btn-primary" data-cursor="button">
                     <span class="btn-text">Start a Project</span>
-                    <span class="btn-icon"><i class="fi fi-rr-arrow-right"></i></span>
+                    <span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                 </a>
                 <a href="#work" class="btn-outline" data-cursor="button">
                     <span>View Our Work</span>
@@ -156,7 +196,7 @@
     </section>
 
     <!-- ===== MARQUEE ===== -->
-    <div class="marquee-section">
+    <div class="marquee-section" aria-hidden="true">
         <div class="marquee-track">
             <div class="marquee-inner">
                 <span>Scriptwriting</span><span class="marquee-dot">✦</span>
@@ -187,7 +227,7 @@
                     </h2>
                     <div class="about-image-block" data-scroll>
                         <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80&auto=format&fit=crop" alt="Content creation studio" class="about-img" loading="lazy" width="800" height="600">
-                        <div class="about-img-badge">
+                        <div class="about-img-badge" aria-hidden="true">
                             <span class="badge-num">5</span>
                             <span class="badge-text">Core<br>Creatives</span>
                         </div>
@@ -198,15 +238,15 @@
                     <p class="about-body" data-scroll>Narrative Orbit was built by creators who were tired of average. We're a tight-knit team of scriptwriters and video editors operating at the intersection of art and strategy — where storytelling meets performance.</p>
                     <div class="about-values" data-scroll>
                         <div class="value-item">
-                            <div class="value-icon"><i class="fi fi-sr-flame"></i></div>
+                            <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.58.58 0 0 1-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.71 1.73 1.08 1.73 2.95 2.97 4.96 3.22 2.14.27 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.26c-.21-.46-.77-1.26-.77-1.26m-3.16 6.3c-.28.24-.74.5-1.1.6-1.12.4-2.24-.16-2.9-.82 1.19-.28 1.9-1.16 2.11-2.05.17-.8-.15-1.46-.28-2.23-.12-.74-.1-1.37.17-2.06.19.38.39.76.63 1.06.77 1 1.98 1.44 2.24 2.8.04.14.06.28.06.43.03.82-.32 1.72-.93 2.27z"/></svg></div>
                             <div><h4>Story-First</h4><p>Every project starts with a narrative, not a brief.</p></div>
                         </div>
                         <div class="value-item">
-                            <div class="value-icon"><i class="fi fi-sr-bolt"></i></div>
+                            <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg></div>
                             <div><h4>Fast & Precise</h4><p>Tight deadlines. Zero compromise on quality.</p></div>
                         </div>
                         <div class="value-item">
-                            <div class="value-icon"><i class="fi fi-sr-chart-line-up"></i></div>
+                            <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
                             <div><h4>Data-Informed</h4><p>Creative instinct backed by platform analytics.</p></div>
                         </div>
                     </div>
@@ -226,7 +266,7 @@
                 <div class="service-item" data-scroll data-index="01">
                     <div class="si-left">
                         <span class="si-num">01</span>
-                        <div class="si-icon"><i class="fi fi-sr-pen-nib"></i></div>
+                        <div class="si-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.5 1.15c-.53 0-1.04.19-1.43.58l-5.81 5.82 1.42 1.42-1.41 1.41-1.42-1.41-1.41 1.41 1.41 1.42-1.41 1.41-1.42-1.41-2.17 2.17c-.39.39-.58.9-.58 1.43V17h2.83l8.58-8.58c.77-.77.77-2.05 0-2.83l-.58-.58 1.41-1.41.58.58c1.56 1.56 1.56 4.09 0 5.66L8.83 18H5v-3.83l2.75-2.75-1.42-1.42 1.41-1.41 1.42 1.41 1.41-1.41-1.41-1.42 1.41-1.41 1.42 1.41 5.81-5.81c.39-.39.58-.9.58-1.43 0-.53-.19-1.04-.58-1.43-.39-.39-.9-.58-1.43-.58z"/></svg></div>
                     </div>
                     <div class="si-center">
                         <h3>Scriptwriting</h3>
@@ -239,13 +279,13 @@
                             <li>Ad Copy & Voiceover</li>
                             <li>Brand Narratives</li>
                         </ul>
-                        <div class="si-arrow"><i class="fi fi-rr-arrow-right"></i></div>
+                        <div class="si-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
                     </div>
                 </div>
                 <div class="service-item" data-scroll data-index="02">
                     <div class="si-left">
                         <span class="si-num">02</span>
-                        <div class="si-icon"><i class="fi fi-sr-film"></i></div>
+                        <div class="si-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
                     </div>
                     <div class="si-center">
                         <h3>Video Editing</h3>
@@ -258,13 +298,13 @@
                             <li>Motion Graphics</li>
                             <li>Color Grading</li>
                         </ul>
-                        <div class="si-arrow"><i class="fi fi-rr-arrow-right"></i></div>
+                        <div class="si-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
                     </div>
                 </div>
                 <div class="service-item" data-scroll data-index="03">
                     <div class="si-left">
                         <span class="si-num">03</span>
-                        <div class="si-icon"><i class="fi fi-sr-target"></i></div>
+                        <div class="si-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
                     </div>
                     <div class="si-center">
                         <h3>Content Strategy</h3>
@@ -277,13 +317,13 @@
                             <li>Niche Research</li>
                             <li>Growth Consulting</li>
                         </ul>
-                        <div class="si-arrow"><i class="fi fi-rr-arrow-right"></i></div>
+                        <div class="si-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
                     </div>
                 </div>
                 <div class="service-item" data-scroll data-index="04">
                     <div class="si-left">
                         <span class="si-num">04</span>
-                        <div class="si-icon"><i class="fi fi-sr-layers"></i></div>
+                        <div class="si-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
                     </div>
                     <div class="si-center">
                         <h3>Full Production</h3>
@@ -296,7 +336,7 @@
                             <li>SEO Optimization</li>
                             <li>Monthly Retainer</li>
                         </ul>
-                        <div class="si-arrow"><i class="fi fi-rr-arrow-right"></i></div>
+                        <div class="si-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
                     </div>
                 </div>
             </div>
@@ -318,13 +358,13 @@
                 <div class="cf-inner">
                     <div class="cf-left">
                         <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format&fit=crop" alt="AI and coding education" class="cf-img" loading="lazy" width="600" height="400">
-                        <div class="cf-img-overlay"></div>
+                        <div class="cf-img-overlay" aria-hidden="true"></div>
                     </div>
                     <div class="cf-right">
                         <div class="cf-logo-row">
                             <span class="cf-client-name">MetaBrains.org</span>
                             <a href="https://metabrains.org" target="_blank" rel="noopener" class="cf-visit-link">
-                                Visit Site <i class="fi fi-rr-arrow-up-right-from-square"></i>
+                                Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                             </a>
                         </div>
                         <p class="cf-desc">We partnered with MetaBrains — a global coding &amp; AI education platform — to produce course content, scripts, and promotional videos that have reached thousands of learners worldwide.</p>
@@ -344,103 +384,95 @@
                         </div>
                         <div class="cf-courses">
                             <a href="https://metabrains.org" target="_blank" rel="noopener" class="cf-course-item">
-                                <div class="cf-course-icon"><i class="fi fi-sr-brain"></i></div>
+                                <div class="cf-course-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
                                 <div>
                                     <strong>GenAI Revenue Accelerator</strong>
                                     <span>203 Lessons · $197</span>
                                 </div>
-                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cf-course-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             </a>
                             <a href="https://metabrains.org" target="_blank" rel="noopener" class="cf-course-item">
-                                <div class="cf-course-icon"><i class="fi fi-sr-chart-line-up"></i></div>
+                                <div class="cf-course-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
                                 <div>
                                     <strong>Build a No Code Trading Bot</strong>
                                     <span>87 Lessons · $499</span>
                                 </div>
-                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cf-course-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             </a>
                             <a href="https://metabrains.org" target="_blank" rel="noopener" class="cf-course-item">
-                                <div class="cf-course-icon"><i class="fi fi-sr-code-simple"></i></div>
+                                <div class="cf-course-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
                                 <div>
                                     <strong>Python from Scratch</strong>
                                     <span>123 Lessons · $57</span>
                                 </div>
-                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cf-course-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             </a>
                             <a href="https://metabrains.org" target="_blank" rel="noopener" class="cf-course-item">
-                                <div class="cf-course-icon"><i class="fi fi-sr-globe"></i></div>
+                                <div class="cf-course-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
                                 <div>
                                     <strong>Getting Started with HTML + CSS</strong>
                                     <span>45 Lessons · $84</span>
                                 </div>
-                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cf-course-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- GenAISkool Feature Block -->
-            <div class="client-feature" data-scroll style="margin-top: 24px;">
-                <div class="cf-badge" style="background: var(--accent);">YouTube Client</div>
+            <!-- GenAI Skool Feature Block -->
+            <div class="client-feature" data-scroll style="margin-top: 40px;">
+                <div class="cf-badge">Featured Client</div>
                 <div class="cf-inner">
                     <div class="cf-left">
-                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80&auto=format&fit=crop" alt="GenAISkool AI education YouTube" class="cf-img" loading="lazy" width="600" height="400">
-                        <div class="cf-img-overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80&auto=format&fit=crop" alt="GenAI Skool YouTube channel" class="cf-img" loading="lazy" width="600" height="400">
+                        <div class="cf-img-overlay" aria-hidden="true"></div>
                     </div>
                     <div class="cf-right">
                         <div class="cf-logo-row">
-                            <span class="cf-client-name" style="color: var(--accent);">GenAISkool</span>
+                            <span class="cf-client-name">GenAI Skool</span>
                             <a href="https://www.youtube.com/@GenAISkool" target="_blank" rel="noopener" class="cf-visit-link">
-                                YouTube Channel <i class="fi fi-rr-arrow-up-right-from-square"></i>
+                                Visit Channel <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                             </a>
                         </div>
-                        <p class="cf-desc">GenAISkool is a fast-growing YouTube channel teaching everyday people how to use AI tools to build income streams, automate workflows, and stay ahead of the curve. We handle their full content pipeline — scripts, edits, thumbnails, and strategy.</p>
+                        <p class="cf-desc">We partnered with GenAI Skool — a fast-growing AI education YouTube channel — to produce scripts and video content that breaks down complex Generative AI concepts into clear, practical tutorials for beginners and practitioners alike.</p>
                         <div class="cf-stats">
                             <div class="cf-stat">
-                                <span class="cf-stat-num" data-count="38">0</span>
-                                <span class="cf-stat-label">Videos Produced</span>
-                            </div>
-                            <div class="cf-stat">
-                                <span class="cf-stat-num" data-count="4200000">0</span>
-                                <span class="cf-stat-label">Total Views</span>
-                            </div>
-                            <div class="cf-stat">
-                                <span class="cf-stat-num" data-count="91">0<span style="font-size:1.2rem">K+</span></span>
+                                <span class="cf-stat-num" data-count="815">0</span>
                                 <span class="cf-stat-label">Subscribers</span>
+                            </div>
+                            <div class="cf-stat">
+                                <span class="cf-stat-num" data-count="257">0</span>
+                                <span class="cf-stat-label">Videos Published</span>
+                            </div>
+                            <div class="cf-stat">
+                                <span class="cf-stat-num" data-count="63589">0</span>
+                                <span class="cf-stat-label">Total Views</span>
                             </div>
                         </div>
                         <div class="cf-courses">
-                            <a href="work/genaiskool.html" class="cf-course-item">
-                                <div class="cf-course-icon"><i class="fi fi-sr-robot"></i></div>
+                            <a href="https://www.youtube.com/@GenAISkool" target="_blank" rel="noopener" class="cf-course-item">
+                                <div class="cf-course-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></div>
                                 <div>
-                                    <strong>How I Made $4,000 with ChatGPT in 30 Days</strong>
-                                    <span>1.2M Views · Top Performer</span>
+                                    <strong>AI Tutorials · ChatGPT &amp; Prompt Engineering</strong>
+                                    <span>Generative AI · Beginner to Advanced</span>
                                 </div>
-                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cf-course-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             </a>
-                            <a href="work/genaiskool.html" class="cf-course-item">
-                                <div class="cf-course-icon"><i class="fi fi-sr-magic-wand"></i></div>
+                            <a href="https://skool.com/genai-skool-2107" target="_blank" rel="noopener" class="cf-course-item">
+                                <div class="cf-course-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
                                 <div>
-                                    <strong>5 AI Tools That Replace a Full-Time Employee</strong>
-                                    <span>870K Views · Trending</span>
+                                    <strong>GenAI Skool Community</strong>
+                                    <span>skool.com/genai-skool-2107</span>
                                 </div>
-                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
-                            </a>
-                            <a href="work/genaiskool.html" class="cf-course-item">
-                                <div class="cf-course-icon"><i class="fi fi-sr-chart-line-up"></i></div>
-                                <div>
-                                    <strong>The AI Automation Blueprint for Beginners</strong>
-                                    <span>640K Views · Series Opener</span>
-                                </div>
-                                <i class="fi fi-rr-arrow-right cf-course-arrow"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cf-course-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="work-grid" style="margin-top: 40px;">
+            <div class="work-grid" style="margin-top: 40px;"></div>
                 <div class="work-item wi-large" data-scroll>
                     <a href="work/documentary-brand-story.html" class="wi-inner">
                         <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=80&auto=format&fit=crop" alt="YouTube production" class="wi-img" loading="lazy" width="800" height="450">
@@ -454,7 +486,7 @@
                                 <span>Strategy</span>
                             </div>
                         </div>
-                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
+                        <div class="wi-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
                     </a>
                 </div>
                 <div class="work-item" data-scroll>
@@ -466,56 +498,32 @@
                             <p>500K views across 6 reels in 2 weeks.</p>
                             <div class="wi-meta"><span>Reels</span><span>Strategy</span></div>
                         </div>
-                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
+                        <div class="wi-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
                     </a>
                 </div>
                 <div class="work-item" data-scroll>
-                    <a href="work/genaiskool.html" class="wi-inner">
-                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80&auto=format&fit=crop" alt="GenAISkool YouTube channel" class="wi-img" loading="lazy" width="600" height="400">
+                    <div class="wi-inner">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80&auto=format&fit=crop" alt="Education course production" class="wi-img" loading="lazy" width="600" height="400">
                         <div class="wi-content">
-                            <div class="wi-tag">YouTube · Full Production</div>
-                            <h3>GenAISkool Channel Growth</h3>
-                            <p>0 to 91K subscribers. 4.2M views. Full pipeline ownership.</p>
-                            <div class="wi-meta"><span>Scripts</span><span>Editing</span><span>Strategy</span></div>
+                            <div class="wi-tag">Education · MetaBrains</div>
+                            <h3>AI Course Content Series</h3>
+                            <p>Scripts &amp; production for MetaBrains' GenAI Revenue Accelerator — 203 lessons.</p>
+                            <div class="wi-meta"><span>Scriptwriting</span><span>Full Production</span></div>
                         </div>
-                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
-                    </a>
+                        <a href="https://metabrains.org" target="_blank" rel="noopener" class="wi-arrow" aria-label="Visit MetaBrains.org"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                    </div>
                 </div>
                 <div class="work-item wi-large" data-scroll>
-                    <a href="work/saas-launch-campaign.html" class="wi-inner">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop" alt="SaaS product launch" class="wi-img" loading="lazy" width="800" height="450">
+                    <div class="wi-inner">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop" alt="Data and analytics content" class="wi-img" loading="lazy" width="800" height="450">
                         <div class="wi-content">
-                            <div class="wi-tag">SaaS · Product Launch</div>
-                            <h3>SaaS Launch Video Campaign</h3>
-                            <p>3-video launch sequence that drove 1,800 signups in the first week.</p>
+                            <div class="wi-tag">Education · MetaBrains</div>
+                            <h3>Trading Bot &amp; Python Course Production</h3>
+                            <p>End-to-end content production for MetaBrains' most advanced technical courses.</p>
                             <div class="wi-meta"><span>Ad Script</span><span>Video Editing</span><span>Motion Graphics</span></div>
                         </div>
-                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
-                    </a>
-                </div>
-                <div class="work-item" data-scroll>
-                    <a href="work/fitness-brand-reels.html" class="wi-inner">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&auto=format&fit=crop" alt="Fitness brand content" class="wi-img" loading="lazy" width="600" height="400">
-                        <div class="wi-content">
-                            <div class="wi-tag">Fitness · Brand Identity</div>
-                            <h3>Fitness Brand Content Overhaul</h3>
-                            <p>Rebuilt a fitness brand's entire content presence. 3x revenue in 90 days.</p>
-                            <div class="wi-meta"><span>Reels</span><span>Brand Voice</span></div>
-                        </div>
-                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
-                    </a>
-                </div>
-                <div class="work-item" data-scroll>
-                    <a href="work/podcast-production.html" class="wi-inner">
-                        <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&q=80&auto=format&fit=crop" alt="Podcast video production" class="wi-img" loading="lazy" width="600" height="400">
-                        <div class="wi-content">
-                            <div class="wi-tag">Podcast · Video Production</div>
-                            <h3>Podcast-to-YouTube Pipeline</h3>
-                            <p>Turned a raw audio podcast into a top-50 YouTube show in 60 days.</p>
-                            <div class="wi-meta"><span>Video Edit</span><span>Clips</span><span>SEO</span></div>
-                        </div>
-                        <div class="wi-arrow"><i class="fi fi-rr-arrow-up-right-from-square"></i></div>
-                    </a>
+                        <a href="https://metabrains.org" target="_blank" rel="noopener" class="wi-arrow" aria-label="Visit MetaBrains.org"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -542,9 +550,9 @@
                         <div class="tc-visual">
                             <div class="tc-img-wrap">
                                 <img src="team/shah-nawaz.jpg" alt="Shah Nawaz" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                                <div class="tc-img-placeholder" style="display:none" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
                             </div>
-                            <div class="tc-glow"></div>
+                            <div class="tc-glow" aria-hidden="true"></div>
                         </div>
                         <div class="tc-info">
                             <div class="tc-role">Founder &amp; CEO · Content Creator</div>
@@ -552,9 +560,9 @@
                             <p>The architect of Narrative Orbit. Shah built this studio from the ground up — setting the creative vision, leading client relationships, and ensuring every piece of content is engineered to perform. He doesn't just create; he builds systems that scale.</p>
                             <div class="tc-tags"><span>CEO</span><span>Strategy</span><span>Creative Direction</span><span>Ideation</span></div>
                             <div class="tc-socials">
-                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+                                <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                             </div>
                         </div>
                     </div>
@@ -562,9 +570,9 @@
                         <div class="tc-visual">
                             <div class="tc-img-wrap">
                                 <img src="team/mohsin.jpg" alt="Mohsin" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                                <div class="tc-img-placeholder" style="display:none" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
                             </div>
-                            <div class="tc-glow"></div>
+                            <div class="tc-glow" aria-hidden="true"></div>
                         </div>
                         <div class="tc-info">
                             <div class="tc-role">Co-Founder &amp; Head of Post-Production</div>
@@ -572,8 +580,8 @@
                             <p>The co-founder who built Narrative Orbit's entire editing department from scratch. Mohsin owns the post-production pipeline end-to-end — from short-form reels to long-form cinematic cuts — and sets the visual standard for everything that leaves the studio. If it looks world-class, Mohsin made it that way.</p>
                             <div class="tc-tags"><span>Co-Founder</span><span>Post-Production</span><span>Reels</span><span>TikTok</span><span>Pipeline Lead</span></div>
                             <div class="tc-socials">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                                <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                             </div>
                         </div>
                     </div>
@@ -592,9 +600,9 @@
                         <div class="tc-visual">
                             <div class="tc-img-wrap">
                                 <img src="team/mehmood.jpg" alt="Mehmood" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                                <div class="tc-img-placeholder" style="display:none" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
                             </div>
-                            <div class="tc-glow"></div>
+                            <div class="tc-glow" aria-hidden="true"></div>
                         </div>
                         <div class="tc-info">
                             <div class="tc-role">Video Editor</div>
@@ -602,8 +610,8 @@
                             <p>Transforms raw footage into cinematic stories with sharp cuts, motion graphics, and immersive sound design.</p>
                             <div class="tc-tags"><span>Premiere Pro</span><span>After Effects</span></div>
                             <div class="tc-socials">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                                <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                             </div>
                         </div>
                     </div>
@@ -611,9 +619,9 @@
                         <div class="tc-visual">
                             <div class="tc-img-wrap">
                                 <img src="team/ahmar.jpg" alt="Ahmar" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                                <div class="tc-img-placeholder" style="display:none" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
                             </div>
-                            <div class="tc-glow"></div>
+                            <div class="tc-glow" aria-hidden="true"></div>
                         </div>
                         <div class="tc-info">
                             <div class="tc-role">Video Editor</div>
@@ -621,8 +629,8 @@
                             <p>Brings energy and precision to every cut. Ahmar specialises in fast-paced short-form content and motion-heavy edits that keep viewers locked in.</p>
                             <div class="tc-tags"><span>Short-Form</span><span>Motion</span><span>Color</span></div>
                             <div class="tc-socials">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                                <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                             </div>
                         </div>
                     </div>
@@ -641,9 +649,9 @@
                         <div class="tc-visual">
                             <div class="tc-img-wrap">
                                 <img src="team/khizar.jpg" alt="Khizar" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                                <div class="tc-img-placeholder" style="display:none" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
                             </div>
-                            <div class="tc-glow"></div>
+                            <div class="tc-glow" aria-hidden="true"></div>
                         </div>
                         <div class="tc-info">
                             <div class="tc-role">Scriptwriter</div>
@@ -651,8 +659,8 @@
                             <p>Crafts hooks that stop the scroll and narratives that hold attention from the first second to the last frame.</p>
                             <div class="tc-tags"><span>YouTube Scripts</span><span>Hooks</span></div>
                             <div class="tc-socials">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                             </div>
                         </div>
                     </div>
@@ -660,9 +668,9 @@
                         <div class="tc-visual">
                             <div class="tc-img-wrap">
                                 <img src="team/hammad.jpg" alt="Hammad" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                                <div class="tc-img-placeholder" style="display:none" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
                             </div>
-                            <div class="tc-glow"></div>
+                            <div class="tc-glow" aria-hidden="true"></div>
                         </div>
                         <div class="tc-info">
                             <div class="tc-role">Scriptwriter</div>
@@ -670,8 +678,8 @@
                             <p>Writes with precision and personality — from punchy ad scripts to long-form educational content.</p>
                             <div class="tc-tags"><span>Ad Scripts</span><span>Long-Form</span></div>
                             <div class="tc-socials">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                             </div>
                         </div>
                     </div>
@@ -679,9 +687,9 @@
                         <div class="tc-visual">
                             <div class="tc-img-wrap">
                                 <img src="team/ayesha.jpg" alt="Ayesha" class="tc-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                <div class="tc-img-placeholder" style="display:none"><i class="fi fi-sr-user"></i></div>
+                                <div class="tc-img-placeholder" style="display:none" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
                             </div>
-                            <div class="tc-glow"></div>
+                            <div class="tc-glow" aria-hidden="true"></div>
                         </div>
                         <div class="tc-info">
                             <div class="tc-role">Scriptwriter</div>
@@ -689,8 +697,8 @@
                             <p>Storyteller at heart. Ayesha writes scripts that feel human — emotionally resonant, platform-native, and built to convert.</p>
                             <div class="tc-tags"><span>Brand Voice</span><span>Reels</span><span>Storytelling</span></div>
                             <div class="tc-socials">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                             </div>
                         </div>
                     </div>
@@ -804,15 +812,15 @@
                     <p class="contact-sub">Tell us about your project. We'll get back to you within 24 hours with a custom proposal.</p>
                     <div class="contact-details">
                         <div class="cd-item">
-                            <div class="cd-icon"><i class="fi fi-rr-envelope"></i></div>
+                            <div class="cd-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
                             <div><span class="cd-label">Email</span><span class="cd-val">hello@narrativeorbit.com</span></div>
                         </div>
                         <div class="cd-item">
-                            <div class="cd-icon"><i class="fab fa-instagram"></i></div>
+                            <div class="cd-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
                             <div><span class="cd-label">Instagram</span><span class="cd-val">@narrativeorbit</span></div>
                         </div>
                         <div class="cd-item">
-                            <div class="cd-icon"><i class="fab fa-youtube"></i></div>
+                            <div class="cd-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></div>
                             <div><span class="cd-label">YouTube</span><span class="cd-val">@NarrativeOrbit</span></div>
                         </div>
                     </div>
@@ -826,14 +834,14 @@
                         <div class="form-section-label">Basic Info</div>
                         <div class="form-row">
                             <div class="form-field">
-                                <label for="fname">Full Name <span class="req">*</span></label>
-                                <input type="text" id="fname" name="name" placeholder="Your name" autocomplete="name" required>
-                                <span class="field-error" id="nameError"></span>
+                                <label for="fname">Full Name <span class="req" aria-hidden="true">*</span></label>
+                                <input type="text" id="fname" name="name" placeholder="Your name" autocomplete="name" required aria-required="true" aria-describedby="nameError">
+                                <span class="field-error" id="nameError" role="alert" aria-live="polite"></span>
                             </div>
                             <div class="form-field">
-                                <label for="femail">Email Address <span class="req">*</span></label>
-                                <input type="email" id="femail" name="email" placeholder="your@email.com" autocomplete="email" required>
-                                <span class="field-error" id="emailError"></span>
+                                <label for="femail">Email Address <span class="req" aria-hidden="true">*</span></label>
+                                <input type="email" id="femail" name="email" placeholder="your@email.com" autocomplete="email" required aria-required="true" aria-describedby="emailError">
+                                <span class="field-error" id="emailError" role="alert" aria-live="polite"></span>
                             </div>
                         </div>
                         <div class="form-row">
@@ -850,144 +858,162 @@
                         <div class="form-section-label">Project Details</div>
                         <div class="form-row">
                             <div class="form-field">
-                                <label for="fservice">Service Needed <span class="req">*</span></label>
-                                <div class="select-wrap">
-                                    <select id="fservice" name="service" required>
-                                        <option value="" disabled selected>Select a service</option>
-                                        <option value="scriptwriting">Scriptwriting Only</option>
-                                        <option value="video-editing">Video Editing Only</option>
-                                        <option value="script-edit">Script + Edit (Bundle)</option>
-                                        <option value="content-strategy">Content Strategy</option>
-                                        <option value="full-production">Full Production (End-to-End)</option>
-                                        <option value="reels-shorts">Reels / Shorts Package</option>
-                                        <option value="ad-campaign">Ad Campaign Production</option>
-                                        <option value="course-content">Course / Educational Content</option>
-                                        <option value="other">Other / Not Sure</option>
-                                    </select>
-                                    <i class="fi fi-rr-angle-small-down"></i>
+                                <label for="fservice">Service Needed <span class="req" aria-hidden="true">*</span></label>
+                                <div class="csd" data-name="service" data-required="true" data-error="serviceError" role="combobox" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                                    <input type="hidden" name="service" id="fservice" required>
+                                    <div class="csd-trigger">
+                                        <span class="csd-val">Select a service</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                    <ul class="csd-list" role="listbox">
+                                        <li role="option" data-val="scriptwriting">Scriptwriting Only</li>
+                                        <li role="option" data-val="video-editing">Video Editing Only</li>
+                                        <li role="option" data-val="script-edit">Script + Edit (Bundle)</li>
+                                        <li role="option" data-val="content-strategy">Content+ Strategy</li>
+                                        <li role="option" data-val="full-production">Full Production (End-to-End)</li>
+                                        <li role="option" data-val="reels-shorts">Reels / Shorts Package</li>
+                                        <li role="option" data-val="ad-campaign">Ad Campaign Production</li>
+                                        <li role="option" data-val="course-content">Course / Educational Content</li>
+                                        <li role="option" data-val="other">Other / Not Sure</li>
+                                    </ul>
                                 </div>
-                                <span class="field-error" id="serviceError"></span>
+                                <span class="field-error" id="serviceError" role="alert" aria-live="polite"></span>
                             </div>
                             <div class="form-field">
-                                <label for="fbudget">Budget Range <span class="req">*</span></label>
-                                <div class="select-wrap">
-                                    <select id="fbudget" name="budget" required>
-                                        <option value="" disabled selected>Select budget</option>
-                                        <option value="under-300">Under $300</option>
-                                        <option value="300-700">$300 – $700</option>
-                                        <option value="700-1500">$700 – $1,500</option>
-                                        <option value="1500-3000">$1,500 – $3,000</option>
-                                        <option value="3000-7000">$3,000 – $7,000</option>
-                                        <option value="7000+">$7,000+</option>
-                                        <option value="monthly-retainer">Monthly Retainer</option>
-                                    </select>
-                                    <i class="fi fi-rr-angle-small-down"></i>
+                                <label for="fbudget">Budget Range <span class="req" aria-hidden="true">*</span></label>
+                                <div class="csd" data-name="budget" data-required="true" data-error="budgetError" role="combobox" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                                    <input type="hidden" name="budget" id="fbudget" required>
+                                    <div class="csd-trigger">
+                                        <span class="csd-val">Select budget</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                    <ul class="csd-list" role="listbox">
+                                        <li role="option" data-val="under-300">Under $300</li>
+                                        <li role="option" data-val="300-700">$300 – $700</li>
+                                        <li role="option" data-val="700-1500">$700 – $1,500</li>
+                                        <li role="option" data-val="1500-3000">$1,500 – $3,000</li>
+                                        <li role="option" data-val="3000-7000">$3,000 – $7,000</li>
+                                        <li role="option" data-val="7000+">$7,000+</li>
+                                        <li role="option" data-val="monthly-retainer">Monthly Retainer</li>
+                                    </ul>
                                 </div>
-                                <span class="field-error" id="budgetError"></span>
+                                <span class="field-error" id="budgetError" role="alert" aria-live="polite"></span>
                             </div>
                         </div>
 
                         <div class="form-section-label">Content Specs</div>
                         <div class="form-row">
                             <div class="form-field">
-                                <label for="fplatform">Upload Platform <span class="req">*</span></label>
-                                <div class="select-wrap">
-                                    <select id="fplatform" name="platform" required>
-                                        <option value="" disabled selected>Where will it be posted?</option>
-                                        <option value="youtube-longform">YouTube (Long-Form)</option>
-                                        <option value="youtube-shorts">YouTube Shorts</option>
-                                        <option value="instagram-reels">Instagram Reels</option>
-                                        <option value="instagram-feed">Instagram Feed</option>
-                                        <option value="tiktok">TikTok</option>
-                                        <option value="facebook">Facebook</option>
-                                        <option value="linkedin">LinkedIn</option>
-                                        <option value="twitter-x">Twitter / X</option>
-                                        <option value="website">Website / Landing Page</option>
-                                        <option value="ads">Paid Ads (Meta / Google)</option>
-                                        <option value="multiple">Multiple Platforms</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    <i class="fi fi-rr-angle-small-down"></i>
+                                <label for="fplatform">Upload Platform <span class="req" aria-hidden="true">*</span></label>
+                                <div class="csd" data-name="platform" data-required="true" data-error="platformError" role="combobox" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                                    <input type="hidden" name="platform" id="fplatform" required>
+                                    <div class="csd-trigger">
+                                        <span class="csd-val">Where will it be posted?</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                    <ul class="csd-list" role="listbox">
+                                        <li role="option" data-val="youtube-longform">YouTube (Long-Form)</li>
+                                        <li role="option" data-val="youtube-shorts">YouTube Shorts</li>
+                                        <li role="option" data-val="instagram-reels">Instagram Reels</li>
+                                        <li role="option" data-val="instagram-feed">Instagram Feed</li>
+                                        <li role="option" data-val="tiktok">TikTok</li>
+                                        <li role="option" data-val="facebook">Facebook</li>
+                                        <li role="option" data-val="linkedin">LinkedIn</li>
+                                        <li role="option" data-val="twitter-x">Twitter / X</li>
+                                        <li role="option" data-val="website">Website / Landing Page</li>
+                                        <li role="option" data-val="ads">Paid Ads (Meta / Google)</li>
+                                        <li role="option" data-val="multiple">Multiple Platforms</li>
+                                        <li role="option" data-val="other">Other</li>
+                                    </ul>
                                 </div>
-                                <span class="field-error" id="platformError"></span>
+                                <span class="field-error" id="platformError" role="alert" aria-live="polite"></span>
                             </div>
                             <div class="form-field">
                                 <label for="fduration">Content Duration</label>
-                                <div class="select-wrap">
-                                    <select id="fduration" name="duration">
-                                        <option value="" disabled selected>Estimated length</option>
-                                        <option value="under-60s">Under 60 seconds</option>
-                                        <option value="1-3min">1 – 3 minutes</option>
-                                        <option value="3-7min">3 – 7 minutes</option>
-                                        <option value="7-15min">7 – 15 minutes</option>
-                                        <option value="15-30min">15 – 30 minutes</option>
-                                        <option value="30min+">30+ minutes</option>
-                                        <option value="series">Series / Multiple Episodes</option>
-                                    </select>
-                                    <i class="fi fi-rr-angle-small-down"></i>
+                                <div class="csd" data-name="duration" role="combobox" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                                    <input type="hidden" name="duration" id="fduration">
+                                    <div class="csd-trigger">
+                                        <span class="csd-val">Estimated length</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                    <ul class="csd-list" role="listbox">
+                                        <li role="option" data-val="under-60s">Under 60 seconds</li>
+                                        <li role="option" data-val="1-3min">1 – 3 minutes</li>
+                                        <li role="option" data-val="3-7min">3 – 7 minutes</li>
+                                        <li role="option" data-val="7-15min">7 – 15 minutes</li>
+                                        <li role="option" data-val="15-30min">15 – 30 minutes</li>
+                                        <li role="option" data-val="30min+">30+ minutes</li>
+                                        <li role="option" data-val="series">Series / Multiple Episodes</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-field">
-                                <label for="fmarket">Target Market / Audience <span class="req">*</span></label>
-                                <div class="select-wrap">
-                                    <select id="fmarket" name="market" required>
-                                        <option value="" disabled selected>Who is your audience?</option>
-                                        <option value="general-consumers">General Consumers</option>
-                                        <option value="young-adults-18-25">Young Adults (18–25)</option>
-                                        <option value="millennials-25-35">Millennials (25–35)</option>
-                                        <option value="professionals-35+">Professionals (35+)</option>
-                                        <option value="entrepreneurs">Entrepreneurs / Founders</option>
-                                        <option value="students">Students / Learners</option>
-                                        <option value="tech-audience">Tech / Developer Audience</option>
-                                        <option value="finance-audience">Finance / Investing Audience</option>
-                                        <option value="fitness-health">Fitness / Health Audience</option>
-                                        <option value="b2b">B2B / Corporate</option>
-                                        <option value="global">Global / International</option>
-                                        <option value="regional">Regional / Local Market</option>
-                                    </select>
-                                    <i class="fi fi-rr-angle-small-down"></i>
+                                <label for="fmarket">Target Market / Audience <span class="req" aria-hidden="true">*</span></label>
+                                <div class="csd" data-name="market" data-required="true" data-error="marketError" role="combobox" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                                    <input type="hidden" name="market" id="fmarket" required>
+                                    <div class="csd-trigger">
+                                        <span class="csd-val">Who is your audience?</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                    <ul class="csd-list" role="listbox">
+                                        <li role="option" data-val="general-consumers">General Consumers</li>
+                                        <li role="option" data-val="young-adults-18-25">Young Adults (18–25)</li>
+                                        <li role="option" data-val="millennials-25-35">Millennials (25–35)</li>
+                                        <li role="option" data-val="professionals-35+">Professionals (35+)</li>
+                                        <li role="option" data-val="entrepreneurs">Entrepreneurs / Founders</li>
+                                        <li role="option" data-val="students">Students / Learners</li>
+                                        <li role="option" data-val="tech-audience">Tech / Developer Audience</li>
+                                        <li role="option" data-val="finance-audience">Finance / Investing Audience</li>
+                                        <li role="option" data-val="fitness-health">Fitness / Health Audience</li>
+                                        <li role="option" data-val="b2b">B2B / Corporate</li>
+                                        <li role="option" data-val="global">Global / International</li>
+                                        <li role="option" data-val="regional">Regional / Local Market</li>
+                                    </ul>
                                 </div>
-                                <span class="field-error" id="marketError"></span>
+                                <span class="field-error" id="marketError" role="alert" aria-live="polite"></span>
                             </div>
                             <div class="form-field">
                                 <label for="ftimeline">Deadline / Timeline</label>
-                                <div class="select-wrap">
-                                    <select id="ftimeline" name="timeline">
-                                        <option value="" disabled selected>When do you need it?</option>
-                                        <option value="asap">ASAP (Rush)</option>
-                                        <option value="1-week">Within 1 week</option>
-                                        <option value="2-weeks">Within 2 weeks</option>
-                                        <option value="1-month">Within 1 month</option>
-                                        <option value="flexible">Flexible</option>
-                                        <option value="ongoing">Ongoing / Retainer</option>
-                                    </select>
-                                    <i class="fi fi-rr-angle-small-down"></i>
+                                <div class="csd" data-name="timeline" role="combobox" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                                    <input type="hidden" name="timeline" id="ftimeline">
+                                    <div class="csd-trigger">
+                                        <span class="csd-val">When do you need it?</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                    <ul class="csd-list" role="listbox">
+                                        <li role="option" data-val="asap">ASAP (Rush)</li>
+                                        <li role="option" data-val="1-week">Within 1 week</li>
+                                        <li role="option" data-val="2-weeks">Within 2 weeks</li>
+                                        <li role="option" data-val="1-month">Within 1 month</li>
+                                        <li role="option" data-val="flexible">Flexible</li>
+                                        <li role="option" data-val="ongoing">Ongoing / Retainer</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-field">
                             <label for="fstyle">Content Style / Tone</label>
-                            <div class="style-chips" id="styleChips">
-                                <button type="button" class="style-chip" data-val="cinematic">Cinematic</button>
-                                <button type="button" class="style-chip" data-val="educational">Educational</button>
-                                <button type="button" class="style-chip" data-val="entertaining">Entertaining</button>
-                                <button type="button" class="style-chip" data-val="motivational">Motivational</button>
-                                <button type="button" class="style-chip" data-val="corporate">Corporate</button>
-                                <button type="button" class="style-chip" data-val="casual">Casual / Vlog</button>
-                                <button type="button" class="style-chip" data-val="documentary">Documentary</button>
-                                <button type="button" class="style-chip" data-val="viral">Viral / Trendy</button>
+                            <div class="style-chips" id="styleChips" role="group" aria-label="Content style or tone">
+                                <button type="button" class="style-chip" data-val="cinematic" aria-pressed="false">Cinematic</button>
+                                <button type="button" class="style-chip" data-val="educational" aria-pressed="false">Educational</button>
+                                <button type="button" class="style-chip" data-val="entertaining" aria-pressed="false">Entertaining</button>
+                                <button type="button" class="style-chip" data-val="motivational" aria-pressed="false">Motivational</button>
+                                <button type="button" class="style-chip" data-val="corporate" aria-pressed="false">Corporate</button>
+                                <button type="button" class="style-chip" data-val="casual" aria-pressed="false">Casual / Vlog</button>
+                                <button type="button" class="style-chip" data-val="documentary" aria-pressed="false">Documentary</button>
+                                <button type="button" class="style-chip" data-val="viral" aria-pressed="false">Viral / Trendy</button>
                             </div>
                             <input type="hidden" id="fstyle" name="style">
                         </div>
 
                         <div class="form-field">
-                            <label for="fmessage">Project Details <span class="req">*</span></label>
-                            <textarea id="fmessage" name="message" rows="5" placeholder="Tell us about your project — your goals, existing content, references you love, anything that helps us understand your vision..." required></textarea>
-                            <span class="field-error" id="messageError"></span>
-                            <span class="char-count" id="charCount">0 / 1000</span>
+                            <label for="fmessage">Project Details <span class="req" aria-hidden="true">*</span></label>
+                            <textarea id="fmessage" name="message" rows="5" placeholder="Tell us about your project — your goals, existing content, references you love, anything that helps us understand your vision..." required aria-required="true" aria-describedby="messageError"></textarea>
+                            <span class="field-error" id="messageError" role="alert" aria-live="polite"></span>
+                            <span class="char-count" id="charCount" aria-live="polite">0 / 1000</span>
                         </div>
                         <div class="form-field">
                             <label for="fref">Reference Links</label>
@@ -998,11 +1024,11 @@
                         </div>
                         <button type="submit" class="btn-submit" id="submitBtn">
                             <span class="submit-text">Send My Brief</span>
-                            <span class="submit-icon"><i class="fi fi-sr-paper-plane"></i></span>
-                            <span class="submit-loader"><i class="fi fi-rr-spinner"></i></span>
+                            <span class="submit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></span>
+                            <span class="submit-loader"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" class="spin-icon"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
                         </button>
                         <div class="form-success" id="formSuccess">
-                            <i class="fi fi-sr-check-circle"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                             <div>
                                 <strong>Brief received!</strong>
                                 <span>We'll get back to you within 24 hours with a custom proposal.</span>
@@ -1014,6 +1040,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-inner">
@@ -1024,21 +1052,21 @@
                 </div>
                 <div class="footer-nav">
                     <div class="fn-col">
-                        <h5>Studio</h5>
+                        <h4>Studio</h4>
                         <a href="#about">About</a>
                         <a href="#services">Services</a>
                         <a href="#work">Work</a>
                         <a href="#team">Team</a>
                     </div>
                     <div class="fn-col">
-                        <h5>Services</h5>
+                        <h4>Services</h4>
                         <a href="#services">Scriptwriting</a>
                         <a href="#services">Video Editing</a>
                         <a href="#services">Strategy</a>
                         <a href="#services">Full Production</a>
                     </div>
                     <div class="fn-col">
-                        <h5>Connect</h5>
+                        <h4>Connect</h4>
                         <a href="#">Instagram</a>
                         <a href="#">YouTube</a>
                         <a href="#">Twitter</a>
@@ -1049,18 +1077,83 @@
             <div class="footer-bottom">
                 <span>© 2025 Narrative Orbit. All rights reserved.</span>
                 <div class="footer-socials">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    <a href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+                    <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 </div>
                 <a href="admin/login.html" class="footer-admin-link">Admin</a>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/orbitbot.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/contact.js" defer></script>
+    <script>
+    // Load orbitbot only after first user interaction to avoid TBT
+    (function() {
+        var loaded = false;
+        function loadOrbitbot() {
+            if (loaded) return;
+            loaded = true;
+            var s = document.createElement('script');
+            s.src = 'js/orbitbot.js';
+            document.body.appendChild(s);
+        }
+        ['pointerdown','keydown','touchstart','scroll'].forEach(function(e) {
+            window.addEventListener(e, loadOrbitbot, { once: true, passive: true });
+        });
+        // Fallback: load after 4s regardless
+        setTimeout(loadOrbitbot, 4000);
+    })();
+    </script>
+    <script>
+    // ── Custom Select Dropdowns ──
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdowns = document.querySelectorAll('.csd');
+
+        function closeAll(except) {
+            dropdowns.forEach(d => { if (d !== except) d.classList.remove('open'); });
+        }
+
+        dropdowns.forEach(function(csd) {
+            const trigger = csd.querySelector('.csd-trigger');
+            const list    = csd.querySelector('.csd-list');
+            const valEl   = csd.querySelector('.csd-val');
+            const input   = csd.querySelector('input[type="hidden"]');
+
+            valEl.classList.add('placeholder');
+
+            trigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = csd.classList.contains('open');
+                closeAll(csd);
+                csd.classList.toggle('open', !isOpen);
+            });
+
+            list.querySelectorAll('li').forEach(function(li) {
+                li.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    list.querySelectorAll('li').forEach(function(l) { l.classList.remove('selected'); });
+                    li.classList.add('selected');
+                    valEl.textContent = li.textContent;
+                    valEl.classList.remove('placeholder');
+                    input.value = li.dataset.val;
+                    csd.classList.remove('open', 'error');
+                    const errId = csd.dataset.error;
+                    if (errId) { const el = document.getElementById(errId); if (el) el.textContent = ''; }
+                });
+            });
+
+            csd.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); csd.classList.toggle('open'); }
+                if (e.key === 'Escape') csd.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', function() { closeAll(null); });
+    });
+    </script>
+
 </body>
 </html>

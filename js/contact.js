@@ -70,8 +70,15 @@
     chips.forEach(chip => {
         chip.addEventListener('click', () => {
             const val = chip.dataset.val;
-            if (selected.has(val)) { selected.delete(val); chip.classList.remove('active'); }
-            else { selected.add(val); chip.classList.add('active'); }
+            if (selected.has(val)) {
+                selected.delete(val);
+                chip.classList.remove('active');
+                chip.setAttribute('aria-pressed', 'false');
+            } else {
+                selected.add(val);
+                chip.classList.add('active');
+                chip.setAttribute('aria-pressed', 'true');
+            }
             if (styleInput) styleInput.value = [...selected].join(', ');
         });
     });
@@ -125,7 +132,7 @@
                 formSuccess.classList.add('show');
                 form.reset();
                 selected.clear();
-                chips.forEach(c => c.classList.remove('active'));
+                chips.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
                 if (styleInput) styleInput.value = '';
                 Object.keys(fields).forEach(key => {
                     if (fields[key].el) fields[key].el.classList.remove('success', 'error');

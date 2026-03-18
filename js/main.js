@@ -10,8 +10,10 @@
 
     function applyTheme(isLight) {
         document.body.classList.toggle('light', isLight);
-        // swap icon: moon for dark mode, sun for light mode
-        themeIcon.className = isLight ? 'fi fi-rr-sun' : 'fi fi-rr-moon';
+        // swap icon: sun for light mode, moon for dark mode
+        themeIcon.innerHTML = isLight
+            ? '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/>'
+            : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
     }
 
     // Restore saved preference
@@ -24,9 +26,11 @@
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 
-    /* ── LOADER (Netflix-style cinematic exit) ───────────── */
-    window.addEventListener('load', function () {
-        setTimeout(function () {
+    /* ── LOADER (exits as soon as script runs — after DOM parse) ── */
+    function startLoaderExit() {
+        // Use rAF to avoid blocking the main thread on first paint
+        requestAnimationFrame(function() {
+            setTimeout(function () {
             var loader    = document.getElementById('loader');
             if (!loader) return;
 
@@ -35,10 +39,10 @@
             var loaderBar   = loader.querySelector('.loader-bar');
             var loaderText  = loader.querySelector('.loader-text');
 
-            /* ── Step 1: slowly fade out brand / bar / text ── */
+            /* ── Step 1: quickly fade out brand / bar / text ── */
             [loaderBrand, loaderBar, loaderText].forEach(function (el) {
                 if (!el) return;
-                el.style.transition = 'opacity 0.6s ease';
+                el.style.transition = 'opacity 0.3s ease';
                 el.style.opacity    = '0';
             });
 
@@ -55,8 +59,6 @@
                 var toggleBtn = document.getElementById('orbitbotToggle');
                 var destX, destY;
                 if (toggleBtn) {
-                    /* Toggle is hidden (scale 0) so getBoundingClientRect gives 0,0.
-                       Use its CSS bottom/right to compute center manually. */
                     var vw        = window.innerWidth;
                     var vh        = window.innerHeight;
                     var style     = getComputedStyle(toggleBtn);
@@ -67,7 +69,6 @@
                     destX = vw - right  - btnW / 2;
                     destY = vh - bottom - btnH / 2;
                 } else {
-                    /* Fallback */
                     destX = window.innerWidth  - 58;
                     destY = window.innerHeight - 58;
                 }
@@ -98,19 +99,17 @@
                 /* Hide original so no double */
                 loaderImg.style.opacity = '0';
 
-                /* Fade the dark overlay slowly — stays visible while logo travels */
-                loader.style.transition = 'opacity 1.1s ease 0.3s';
+                /* Fade the dark overlay quickly */
+                loader.style.transition = 'opacity 0.5s ease 0.1s';
                 loader.style.opacity    = '0';
 
-                /* Force reflow — browser must register start state before animating */
+                /* Force reflow */
                 fly.getBoundingClientRect();
 
-                /* Cinematic flight:
-                   - 1.4s travel with a slow-in / ease-out arc
-                   - opacity fades only in the last 0.3s of the journey          */
+                /* Cinematic flight — faster */
                 fly.style.transition = [
-                    'transform 1.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    'opacity   0.35s ease 1.1s'
+                    'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+                    'opacity   0.2s ease 0.5s'
                 ].join(',');
                 fly.style.transform = [
                     'translate(-50%,-50%)',
@@ -128,12 +127,14 @@
                     if (toggleBtn) {
                         toggleBtn.classList.add('orbit-land');
                     }
-                }, 1550);
+                }, 750);
 
-            }, 500); /* wait for text/bar to fade */
+            }, 250); /* wait for text/bar to fade */
 
-        }, 1400);
-    });
+        }, 300);
+        }); // end rAF
+    }
+    startLoaderExit();
 
     /* ── CUSTOM CURSOR (desktop / fine pointer only) ─────── */
     if (window.matchMedia('(pointer: fine)').matches) {
@@ -200,6 +201,13 @@
     hamburger.addEventListener('click', function () {
         var open = mobileOverlay.classList.toggle('open');
         hamburger.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        if (open) {
+            mobileOverlay.removeAttribute('inert');
+        } else {
+            mobileOverlay.setAttribute('inert', '');
+        }
         document.body.style.overflow = open ? 'hidden' : '';
     });
 
@@ -207,51 +215,11 @@
         link.addEventListener('click', function () {
             mobileOverlay.classList.remove('open');
             hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'Open menu');
+            mobileOverlay.setAttribute('inert', '');
             document.body.style.overflow = '';
         });
-    });
-
-    /* ── SCROLL REVEAL (IntersectionObserver) ────────────── */
-    var revealObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                revealObs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-    document.querySelectorAll('[data-scroll]').forEach(function (el) {
-        revealObs.observe(el);
-    });
-
-    /* ── COUNTER ANIMATION (RAF-based, not setInterval) ──── */
-    function runCounter(el, target) {
-        var start = performance.now();
-        var duration = 1400;
-        function step(now) {
-            var p = Math.min((now - start) / duration, 1);
-            // ease-out cubic
-            var eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.floor(eased * target);
-            if (p < 1) requestAnimationFrame(step);
-            else el.textContent = target;
-        }
-        requestAnimationFrame(step);
-    }
-
-    var counterObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                var el = entry.target;
-                runCounter(el, parseInt(el.getAttribute('data-count'), 10));
-                counterObs.unobserve(el);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('[data-count]').forEach(function (el) {
-        counterObs.observe(el);
     });
 
     /* ── SMOOTH SCROLL ───────────────────────────────────── */
@@ -267,39 +235,87 @@
         }
     });
 
-    /* ── ACTIVE NAV (IntersectionObserver, not scroll) ───── */
-    var navLinks = document.querySelectorAll('.nav-link');
-    var sectionObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                var id = entry.target.getAttribute('id');
-                navLinks.forEach(function (link) {
-                    link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-                });
+    /* ── SCROLL REVEAL + COUNTERS + NAV ACTIVE (deferred to idle) ── */
+    var ric = window.requestIdleCallback || function(cb) { setTimeout(cb, 1); };
+    ric(function() {
+        /* ── SCROLL REVEAL (IntersectionObserver) ────────────── */
+        var revealObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    revealObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('[data-scroll]').forEach(function (el) {
+            revealObs.observe(el);
+        });
+
+        /* ── COUNTER ANIMATION ──────────────────────────────── */
+        function runCounter(el, target) {
+            var start = performance.now();
+            var duration = 1400;
+            function step(now) {
+                var p = Math.min((now - start) / duration, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.floor(eased * target);
+                if (p < 1) requestAnimationFrame(step);
+                else el.textContent = target;
             }
-        });
-    }, { threshold: 0.4 });
+            requestAnimationFrame(step);
+        }
 
-    document.querySelectorAll('section[id]').forEach(function (s) { sectionObs.observe(s); });
+        var counterObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    var el = entry.target;
+                    runCounter(el, parseInt(el.getAttribute('data-count'), 10));
+                    counterObs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
 
-    /* ── LAZY IMAGES (native + fade-in) ─────────────────── */
-    document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
-        if (img.complete) { img.classList.add('loaded'); return; }
-        img.addEventListener('load',  function () { img.classList.add('loaded'); }, { once: true });
-        img.addEventListener('error', function () { img.classList.add('loaded'); }, { once: true });
-    });
+        document.querySelectorAll('[data-count]').forEach(function (el) {
+            counterObs.observe(el);
+        });
 
-    /* ── WORK CARD TILT (subtle, GPU only) ───────────────── */
-    document.querySelectorAll('.work-item').forEach(function (card) {
-        card.addEventListener('mousemove', function (e) {
-            var r = card.getBoundingClientRect();
-            var x = ((e.clientX - r.left) / r.width  - 0.5) * 6;
-            var y = ((e.clientY - r.top)  / r.height - 0.5) * -6;
-            card.style.transform = 'perspective(800px) rotateX(' + y + 'deg) rotateY(' + x + 'deg) translateY(-4px)';
+        /* ── ACTIVE NAV (IntersectionObserver) ───────────────── */
+        var navLinks = document.querySelectorAll('.nav-link');
+        var sectionObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    var id = entry.target.getAttribute('id');
+                    navLinks.forEach(function (link) {
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                    });
+                }
+            });
+        }, { threshold: 0.4 });
+
+        document.querySelectorAll('section[id]').forEach(function (s) { sectionObs.observe(s); });
+
+        /* ── LAZY IMAGES (native + fade-in) ─────────────────── */
+        document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+            if (img.complete) { img.classList.add('loaded'); return; }
+            img.addEventListener('load',  function () { img.classList.add('loaded'); }, { once: true });
+            img.addEventListener('error', function () { img.classList.add('loaded'); }, { once: true });
         });
-        card.addEventListener('mouseleave', function () {
-            card.style.transform = '';
-        });
+
+        /* ── WORK CARD TILT (desktop only) ───────────────────── */
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.querySelectorAll('.work-item').forEach(function (card) {
+                card.addEventListener('mousemove', function (e) {
+                    var r = card.getBoundingClientRect();
+                    var x = ((e.clientX - r.left) / r.width  - 0.5) * 6;
+                    var y = ((e.clientY - r.top)  / r.height - 0.5) * -6;
+                    card.style.transform = 'perspective(800px) rotateX(' + y + 'deg) rotateY(' + x + 'deg) translateY(-4px)';
+                });
+                card.addEventListener('mouseleave', function () {
+                    card.style.transform = '';
+                });
+            });
+        }
     });
 
 })();
