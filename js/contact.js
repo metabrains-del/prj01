@@ -118,16 +118,16 @@
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
 
-        fetch('api/contact.php', {
+        fetch('https://formspree.io/f/xvzwllae', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(data)
         })
         .then(function (res) { return res.json(); })
         .then(function (result) {
             submitBtn.classList.remove('loading');
             submitBtn.disabled = false;
-            if (result.success) {
+            if (result.ok) {
                 saveSubmission(data);
                 formSuccess.classList.add('show');
                 form.reset();
