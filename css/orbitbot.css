@@ -1,0 +1,419 @@
+/* ============================================================
+   ORBITBOT — Floating Chatbot Stylesheet
+   Matches Narrative Orbit design system
+   ============================================================ */
+
+/* ── TOGGLE BUTTON ── */
+.orbitbot-toggle {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px var(--primary-glow), 0 2px 8px rgba(0,0,0,0.4);
+    overflow: hidden;
+    /* starts hidden — JS adds .orbit-land to animate it in */
+    opacity: 0;
+    transform: scale(0);
+}
+.orbitbot-toggle.orbit-land,
+.orbitbot-toggle:hover,
+.orbitbot-toggle.open {
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+}
+.orbitbot-toggle:hover {
+    background: var(--primary-light);
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px var(--primary-glow), 0 2px 8px rgba(0,0,0,0.4);
+}
+.orbitbot-toggle.open {
+    background: var(--surface-2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.orbitbot-toggle-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(210deg) brightness(1.4);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    position: absolute;
+}
+.orbitbot-toggle-close {
+    position: absolute;
+    color: var(--text-2);
+    font-size: 1.1rem;
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.orbitbot-toggle.open .orbitbot-toggle-logo {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+}
+.orbitbot-toggle.open .orbitbot-toggle-close {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Pulse ring */
+.orbitbot-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-light);
+    opacity: 0;
+    animation: orbit-pulse 2.5s ease-in-out infinite;
+}
+@keyframes orbit-pulse {
+    0%   { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0;   transform: scale(1.5); }
+}
+.orbitbot-toggle.open::before { animation: none; }
+
+/* ── LANDING ENTRANCE ── */
+/* Hide toggle until the logo "lands" on it */
+.orbitbot-toggle {
+    opacity: 0;
+    transform: scale(0);
+    transition: none;
+}
+/* Triggered by JS after loader flies away */
+.orbitbot-toggle.orbit-land {
+    animation: orbit-land-bounce 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes orbit-land-bounce {
+    0%   { opacity: 0; transform: scale(0.2); }
+    55%  { opacity: 1; transform: scale(1.18); }
+    75%  { transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+/* After landing, restore normal hover transitions */
+.orbitbot-toggle.orbit-land:not(.open) {
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* ── CHAT WINDOW ── */
+.orbitbot-window {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    z-index: 8999;
+    width: 380px;
+    max-height: 580px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 4px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1),
+                transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    transform-origin: bottom right;
+}
+.orbitbot-window.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+
+/* ── HEADER ── */
+.orbitbot-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, var(--bg-3) 0%, var(--surface-2) 100%);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+.orbitbot-header-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 16px var(--primary-glow);
+}
+.orbitbot-header-logo img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(210deg) brightness(1.4);
+}
+.orbitbot-header-info { flex: 1; }
+.orbitbot-header-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+.orbitbot-header-name em {
+    font-style: normal;
+    color: var(--primary-light);
+}
+.orbitbot-header-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    color: var(--text-3);
+    margin-top: 2px;
+}
+.orbitbot-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: status-blink 2s ease-in-out infinite;
+}
+@keyframes status-blink {
+    0%,100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+}
+
+/* ── MESSAGES AREA ── */
+.orbitbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+}
+.orbitbot-messages::-webkit-scrollbar { width: 4px; }
+.orbitbot-messages::-webkit-scrollbar-track { background: transparent; }
+.orbitbot-messages::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
+
+/* Bot message bubble */
+.ob-msg {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    animation: msg-in 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
+    opacity: 0;
+}
+@keyframes msg-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.ob-msg-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+}
+.ob-msg-avatar img {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(210deg) brightness(1.4);
+}
+.ob-msg-bubble {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 16px 16px 16px 4px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.55;
+    max-width: 85%;
+}
+
+/* ── TOPIC CHIPS ── */
+.ob-topics {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+    animation: msg-in 0.35s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+    opacity: 0;
+}
+.ob-topic-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-2);
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    text-align: left;
+    width: 100%;
+}
+.ob-topic-chip:hover {
+    border-color: var(--primary-light);
+    color: var(--text);
+    background: rgba(124,58,237,0.06);
+    transform: translateX(3px);
+}
+.ob-topic-chip-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(124,58,237,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-light);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+.ob-topic-chip:hover .ob-topic-chip-icon {
+    background: var(--primary);
+    color: #fff;
+}
+.ob-topic-chip-label { flex: 1; }
+.ob-topic-chip-arrow {
+    color: var(--text-3);
+    width: 0.7rem; height: 0.7rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.ob-topic-chip:hover .ob-topic-chip-arrow {
+    transform: translateX(3px);
+    color: var(--primary-light);
+}
+
+/* ── Q&A LIST ── */
+.ob-qa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    animation: msg-in 0.35s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+    opacity: 0;
+}
+.ob-qa-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+.ob-qa-item:hover { border-color: var(--border-hover); }
+.ob-qa-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 14px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-2);
+    transition: color 0.2s ease;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-body);
+}
+.ob-qa-q:hover { color: var(--text); }
+.ob-qa-q.active { color: var(--primary-light); }
+.ob-qa-q-icon {
+    width: 0.65rem; height: 0.65rem;
+    color: var(--text-3);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), color 0.2s ease;
+    flex-shrink: 0;
+}
+.ob-qa-q.active .ob-qa-q-icon {
+    transform: rotate(180deg);
+    color: var(--primary-light);
+}
+.ob-qa-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1), padding 0.3s ease;
+    font-size: 0.8rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    padding: 0 14px;
+    border-top: 0px solid var(--border);
+}
+.ob-qa-a.open {
+    max-height: 200px;
+    padding: 10px 14px 12px;
+    border-top: 1px solid var(--border);
+}
+
+/* ── BACK BUTTON ── */
+.ob-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    font-family: var(--font-body);
+    transition: color 0.2s ease;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.ob-back-btn:hover { color: var(--primary-light); }
+.ob-back-btn svg { width: 0.65rem; height: 0.65rem; }
+
+/* ── FOOTER ── */
+.orbitbot-footer {
+    padding: 10px 16px 14px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    flex-shrink: 0;
+}
+.orbitbot-footer span {
+    font-size: 0.68rem;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+}
+.orbitbot-footer em {
+    font-style: normal;
+    color: var(--primary-light);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 480px) {
+    .orbitbot-window {
+        right: 12px;
+        left: 12px;
+        width: auto;
+        bottom: 90px;
+        max-height: 70vh;
+    }
+    .orbitbot-toggle {
+        right: 16px;
+        bottom: 20px;
+    }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login — Narrative Orbit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="login-page">
+    <div class="login-bg">
+        <div class="login-orb orb-a"></div>
+        <div class="login-orb orb-b"></div>
+    </div>
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="../assets/logo.png" alt="Narrative Orbit" class="admin-logo-img" width="40" height="40">
+            <span>Narrative<em>Orbit</em></span>
+        </div>
+        <h1>Admin Access</h1>
+        <p class="login-sub">Secure portal for studio management</p>
+        <form id="loginForm" novalidate>
+            <div class="lf-field">
+                <label for="lusername">Username</label>
+                <div class="lf-input-wrap">
+                    <i class="fi fi-rr-user"></i>
+                    <input type="text" id="lusername" name="username" placeholder="Enter username" autocomplete="username" required>
+                </div>
+            </div>
+            <div class="lf-field">
+                <label for="lpassword">Password</label>
+                <div class="lf-input-wrap">
+                    <i class="fi fi-rr-lock"></i>
+                    <input type="password" id="lpassword" name="password" placeholder="Enter password" autocomplete="current-password" required>
+                    <button type="button" class="toggle-pw" id="togglePw" aria-label="Toggle password">
+                        <i class="fi fi-rr-eye" id="pwIcon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="login-error" id="loginError"></div>
+            <button type="submit" class="login-btn" id="loginBtn">
+                <span class="lb-text">Sign In</span>
+                <span class="lb-icon"><i class="fi fi-rr-arrow-right"></i></span>
+                <span class="lb-loader" style="display:none"><i class="fi fi-rr-spinner"></i></span>
+            </button>
+        </form>
+        <a href="../index.html" class="back-link"><i class="fi fi-rr-arrow-left"></i> Back to site</a>
+    </div>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
